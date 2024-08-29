@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230421081bd4e41469eddb7d4a73fe08, type: 3}
+  m_Name: PhysicalSciences
+  m_EditorClassIdentifier: 
+  sectionRecords:
+  - categoryName: Physical Sciences
+    sectionName: Light and Shadow
+    levelDatas: {fileID: 11400000, guid: 630d686eadd12c743b4fcb38ebbaeafb, type: 2}
+  - categoryName: Physical Sciences
+    sectionName: Materials
+    levelDatas: {fileID: 11400000, guid: 642d8976e3997ce40bd5aa4e4e945d26, type: 2}
+  - categoryName: Physical Sciences
+    sectionName: Matter and Changes
+    levelDatas: {fileID: 11400000, guid: 9bd837efc36e6ad49992af56fc3044cb, type: 2}
+  - categoryName: Physical Sciences
+    sectionName: Sound
+    levelDatas: {fileID: 11400000, guid: 862956352225958408db9c4f432698e0, type: 2}

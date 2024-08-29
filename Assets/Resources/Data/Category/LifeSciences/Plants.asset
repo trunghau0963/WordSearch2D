@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac9dd759f25d804bb2a82f9eb8300aa, type: 3}
+  m_Name: Plants
+  m_EditorClassIdentifier: 
+  levelDatas:
+  - sectionName: 
+    levelName: Level 1
+    boardData:
+    - {fileID: 11400000, guid: 7f57ec12a15fdde4b86235b44ebce60c, type: 2}
+    - {fileID: 11400000, guid: ac8c8dca26cb0c541b25ad8b4fe6460f, type: 2}
+  - sectionName: 
+    levelName: Level 2
+    boardData:
+    - {fileID: 11400000, guid: c828e6105d58b3346bb047c23fa9c405, type: 2}
+    - {fileID: 11400000, guid: 67d730a1173752d419f299f0141edc19, type: 2}
+    - {fileID: 11400000, guid: c3476aef48a327f428eae31a26454c53, type: 2}
+    - {fileID: 11400000, guid: fb5e9950ce97ace46b2f61ddf8baa4e4, type: 2}
+  - sectionName: 
+    levelName: Level 3
+    boardData:
+    - {fileID: 11400000, guid: 7619ba675e786b94da43f7b5687f4cd4, type: 2}
+    - {fileID: 11400000, guid: cb975891a813d2b4997579ae18805e69, type: 2}
+  - sectionName: 
+    levelName: Level 4
+    boardData:
+    - {fileID: 11400000, guid: 3bbd783a40108ec4e9f2cc448e1ea8cc, type: 2}
+    - {fileID: 11400000, guid: c63cc0e096b778141b80f2f092d26984, type: 2}
+    - {fileID: 11400000, guid: bab1c7ccbafa69849809b1bfb6fc59a9, type: 2}
+    - {fileID: 11400000, guid: 933408db3bf24724aa0f06dbb420410c, type: 2}
+  - sectionName: 
+    levelName: Level 5
+    boardData: []

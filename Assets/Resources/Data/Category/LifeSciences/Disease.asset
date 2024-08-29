@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac9dd759f25d804bb2a82f9eb8300aa, type: 3}
+  m_Name: Disease
+  m_EditorClassIdentifier: 
+  levelDatas:
+  - sectionName: 
+    levelName: Level 1
+    boardData:
+    - {fileID: 11400000, guid: 30e802be2b3fd4a41b14286ba01ec7ca, type: 2}
+    - {fileID: 11400000, guid: 56f4629899a17234096ed295a7ee2b5c, type: 2}
+    - {fileID: 11400000, guid: 6370eaf7835dd17478f0772133fee1bd, type: 2}
+    - {fileID: 11400000, guid: f0920f05f70906641a9e97d2facb0aee, type: 2}
+  - sectionName: 
+    levelName: Level 2
+    boardData:
+    - {fileID: 11400000, guid: 49af4d209ebaa204b888da7cafffab93, type: 2}
+    - {fileID: 11400000, guid: 7545f7fdfbe4f794786c26fd16dbefc8, type: 2}
+    - {fileID: 11400000, guid: 130f98008857bbf42ae02255b6d29778, type: 2}
+    - {fileID: 11400000, guid: ab9691e1b2a539e4f9b848f06f54999a, type: 2}
+  - sectionName: 
+    levelName: Level 3
+    boardData: []
+  - sectionName: 
+    levelName: Level 4
+    boardData: []
+  - sectionName: 
+    levelName: Level 5
+    boardData: []
