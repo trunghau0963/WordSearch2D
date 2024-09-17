@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -173, y: 39}
-  m_SizeDelta: {x: 427.2062, y: 145.8458}
+  m_AnchoredPosition: {x: 12.83, y: 48.3755}
+  m_SizeDelta: {x: 798.87, y: 164.5967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3229569352356323130
 CanvasRenderer:
@@ -142,12 +142,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b0efbebec03396f47bfd8c40217dea5d, type: 3}
-    m_FontSize: 90
+    m_FontSize: 70
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 8
+    m_MinSize: 6
     m_MaxSize: 90
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 223719415040479260}
   - component: {fileID: 1026363481518861579}
   - component: {fileID: -7946511265495062205}
+  - component: {fileID: 4355000340744712395}
   m_Layer: 5
   m_Name: CategoryButton
   m_TagString: Untagged
@@ -514,7 +515,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 223719415040479260}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7946511265495062205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +541,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
-  gameCategoryData: {fileID: 11400000, guid: babf8276666b55f499c82b76bc07b3dd, type: 2}
-  categoryText: {fileID: 411969270263591396}
+--- !u!114 &4355000340744712395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135454744222144725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63f40f6dedd30042907950cb0d2cb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 7040448705161357861}
   progressBarFilling: {fileID: 5399873635655622063}
+  textProgress: {fileID: 411969270263591396}

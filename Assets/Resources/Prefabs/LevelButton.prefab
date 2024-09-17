@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 8567462157112559935}
   - component: {fileID: -6037096047211987706}
   - component: {fileID: 5799588976940832966}
+  - component: {fileID: 8567509898422342731}
   m_Layer: 5
   m_Name: LevelButton
   m_TagString: Untagged
@@ -243,7 +244,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 5799588976940832966}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -292,3 +293,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8567509898422342731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772475139613707022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f3fd345f89e3d4096182f944ec1cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLock: {fileID: 5682148412978349514}
+  Name: {fileID: 9152366345468383277}

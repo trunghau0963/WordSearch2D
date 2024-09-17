@@ -1,90 +1,187 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
 [System.Serializable]
-public class GameData{
-    public List<LevelScore> levelScores = new();
+public class GameDataSave
+{
+    public List<Category> DataSet;
 }
 
 [System.Serializable]
-public class LevelScore{
-    public int level;
-    public int score;
+// [CreateAssetMenu]
+public class Category
+{
+    public string CategoryName;
+    public bool isLock = true;
+    public List<Section> Sections;
 }
+
+[System.Serializable]
+public class Section
+{
+    public string SectionName;
+    public bool isLock = true;
+    public List<Level> Levels;
+}
+
+[System.Serializable]
+// [CreateAssetMenu]
+public class Level
+{
+    public string Name;
+    public bool isLock = true;
+    public List<BoardList> Boards;
+}
+
+[System.Serializable]
+public class BoardList
+{
+
+    public string Name;
+    public bool isLock;
+    public int Score;
+    public BoardData boardData;
+}
+
 public class SavingFile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameData data = new();
-    public int level;
+    public string categoryName;
+    public string sectionName;
+    public string levelName;
+
+    public string boardName;
     public int score;
+    public int time;
+    public bool isLock;
+    public GameDataSave data;
+
+    public GameObject CategoryList;
+    public GameObject SectionList;
+    public GameObject LevelList;
+
+    public string nameFile;
+
     void Start()
     {
-        LoadData();
+        // data = ScriptableObject.CreateInstance<GameData>();
+        // data.Initialize();
+        data = LoadData();
+        // SaveData();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Alpha1)){
-            SaveData();
-        }
-        if(Input.GetKeyUp(KeyCode.Alpha2)){
-            Save(level, score);
-        } 
-        if(Input.GetKeyUp(KeyCode.Alpha3)){
-            GetScore(level);
-        }
     }
 
-    public void Save(int level, int score){
-        foreach(LevelScore levelScore in data.levelScores){
-            if(levelScore.level == level){
-                if(levelScore.score < score){
-                    levelScore.score = score;
-                    SaveData();
-                }
-                Debug.Log("Score smaller than previous score");
-                return;
-            }
+
+
+    public void Save(string categoryName, string sectionName, string levelName, string boardName, int score, int time, bool isLock)
+    {
+        Category category = data.DataSet.Find(c => c.CategoryName == categoryName);
+        if (category == null)
+        {
+            category = new Category();
+            category.CategoryName = categoryName;
+            category.Sections = new List<Section>();
+            data.DataSet.Add(category);
         }
 
-        LevelScore newLevelScore = new LevelScore();
-        newLevelScore.level = level;
-        newLevelScore.score = score;
-        data.levelScores.Add(newLevelScore);
-        SaveData();
-    }
-
-    public void GetScore(int level){
-        foreach(LevelScore levelScore in data.levelScores){
-            if(levelScore.level == level){
-                Debug.Log("Score: " + levelScore.score);
-                return;
-            }
-        }
-        Debug.Log("No Score Found");
-    }
-    public void LoadData(){
-        string file = "save.json";
-        string filePath = Path.Combine(Application.persistentDataPath, file); 
-
-        if(!File.Exists(filePath)){
-            File.WriteAllText(filePath, "");
+        Section section = category.Sections.Find(s => s.SectionName == sectionName);
+        if (section == null)
+        {
+            section = new Section();
+            section.SectionName = sectionName;
+            section.Levels = new List<Level>();
+            category.Sections.Add(section);
         }
 
-        data = JsonUtility.FromJson<GameData>(File.ReadAllText(filePath));
-        Debug.Log("Data Loaded");
+        Level level = section.Levels.Find(l => l.Name == levelName);
+        if (level == null)
+        {
+            level = new Level();
+            level.Name = levelName;
+            level.Boards = new List<BoardList>();
+            section.Levels.Add(level);
+        }
+
+        BoardList board = level.Boards.Find(b => b.Name == boardName);
+        if (board == null)
+        {
+            board = new BoardList();
+            board.Name = boardName;
+            board.Score = score;
+            board.isLock = isLock;
+            level.Boards.Add(board);
+        }
+
+        Debug.Log("Data Saved");
     }
 
-    public void SaveData(){
-        string file = "save.json";
+    public void GetScore(string categoryName, string sectionName, string levelName, string boardName)
+    {
+        Category category = data.DataSet.Find(c => c.CategoryName == categoryName);
+        if (category == null)
+        {
+            Debug.Log("Category not found");
+            return;
+        }
+
+        Section section = category.Sections.Find(s => s.SectionName == sectionName);
+        if (section == null)
+        {
+            Debug.Log("Section not found");
+            return;
+        }
+
+        Level level = section.Levels.Find(l => l.Name == levelName);
+        if (level == null)
+        {
+            Debug.Log("Level not found");
+            return;
+        }
+
+        BoardList board = level.Boards.Find(b => b.Name == boardName);
+        if (board == null)
+        {
+            Debug.Log("Board not found");
+            return;
+        }
+
+        Debug.Log("Score: " + board.Score);
+
+    }
+
+    public GameDataSave LoadData()
+    {
+        string file = nameFile + ".json";
+        string filePath = Path.Combine(Application.persistentDataPath, file);
+        GameDataSave data = new GameDataSave();
+
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            data = JsonUtility.FromJson<GameDataSave>(json);
+            Debug.Log("Data Loaded");
+        }
+        else
+        {
+            // GameDataSave data = new GameDataSave();
+            // data.DataSet = new List<Category>();
+            Debug.Log("No Data Found");
+        }
+
+        return data;
+    }
+    public void SaveData()
+    {
+        string file = nameFile + ".json";
         string filePath = Path.Combine(Application.persistentDataPath, file);
 
-        string json = JsonUtility.ToJson(data);
-
+        string json = JsonUtility.ToJson(data);  // true for pretty-printing the JSON
         File.WriteAllText(filePath, json);
+
         Debug.Log("Data Saved to: " + filePath);
     }
 }

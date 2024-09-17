@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbb828738398e40bc467ded7ac03af, type: 3}
   m_Name: CurrentGameData
   m_EditorClassIdentifier: 
-  selectedCategoryName: 
-  selectedSectionName: 
+  selectedCategoryName: Light and Shadow
+  selectedSectionName: Fit For Life
   selectedLevelName: 
   selectedBoardData: {fileID: 0}
