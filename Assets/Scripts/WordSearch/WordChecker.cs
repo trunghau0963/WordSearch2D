@@ -8,7 +8,10 @@ using UnityEngine.SceneManagement;
 public class WordChecker : MonoBehaviour
 {
     public GameData currentGameData;
-    public GameCategoryData gameCategoryData;
+
+    private GameDataSelector gameDataSelector;
+
+    [SerializeField] private GameDataSave dataSave;
     private string _word;
 
     private int _assignedPoints = 0;
@@ -32,19 +35,21 @@ public class WordChecker : MonoBehaviour
     {
         GameEvents.OnCheckSquare -= SquareSelected;
         GameEvents.OnClearSelection -= ClearSelection;
-        GameEvents.OnBoardComplete -= () => _completedWords++;   
+        GameEvents.OnBoardComplete -= () => _completedWords++;
         GameEvents.OnLoadNextLevel -= LoadNextLevel;
     }
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("WordSearchGameScene");
     }
 
     void Start()
     {
         _assignedPoints = 0;
         _completedWords = 0;
+        gameDataSelector = FindAnyObjectByType<GameDataSelector>();
+        dataSave = gameDataSelector.data;
     }
 
     void Update()
@@ -197,109 +202,202 @@ public class WordChecker : MonoBehaviour
         bool loadNextLevel = false;
         if (currentGameData.selectedBoardData.SearchWords.Count == _completedWords)
         {
+            Section section = gameDataSelector.savingFile.LoadSection(currentGameData.selectedCategoryName, currentGameData.selectedSectionName);
+            Level level = gameDataSelector.savingFile.LoadLevel(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentGameData.selectedLevelName);
 
-            var categoryName = currentGameData.selectedCategoryName;
-            var sectionName = currentGameData.selectedSectionName;
-            var levelName = currentGameData.selectedLevelName;
-            var tempCurrentBoardIndex = DataSaver.ReadLevelCurrentIndexValues(levelName);
-            // var tempCurrentSectionIndex = DataSaver.ReadSectionCurrentIndexValues(sectionName);
-            // var tempCurrentCategoryIndex = DataSaver.ReadCategoryCurrentIndexValues(categoryName);
-
-            var currentBoardIndex = (int)tempCurrentBoardIndex.z;
-            var nextBoardIndex = -1;
-            var currentLevelIndex = 0;
-            bool readNextLevelName = false;
-            foreach (var dataCat in gameCategoryData.categoryRecords)
+            if (level == null)
             {
-                if (dataCat.selectedCategoryName == categoryName)
+                Debug.LogError("Level is null");
+                return;
+            }
+            Debug.Log("Level is not null" + level.Name);
+            int currentBoardIndex = 0;
+            foreach (var board in level.Boards)
+            {
+                if (currentGameData.selectedBoardName == board.Name)
                 {
-                    int idxCategory = DataSaver.ReadCategoryCurrentIndexValues(categoryName);
-                    foreach (var section in dataCat.sectionDatas.sectionRecords)
+                    Debug.Log(currentGameData.selectedBoardName + "=" + board.Name);
+                    currentBoardIndex = board.index;
+                    int nextBoardIndex = board.index + 1;
+                    if (nextBoardIndex < level.Boards.Count)
                     {
-                        if (section.sectionName == sectionName)
-                        {
-                            var tempIdx = DataSaver.ReadSectionCurrentIndexValues(sectionName);
-                            int idxSection = (int)tempIdx.y;
-                            // foreach(var dataLevel in gameLevelData.levelDatas){
-                            //     if(dataLevel.levelName == levelName){
-                            //         nextBoardIndex = currentBoardIndex + 1;
-                            //         if(nextBoardIndex < dataLevel.boardData.Count){
-                            //             DataSaver.SaveCategoryData(levelName, nextBoardIndex);
-                            //             loadNextLevel = true;
-                            //         }
-                            //     }
-                            // }
-                            for (int i = 0; i < section.levelDatas.levelRecords.Count; i++)
-                            {
-                                if (readNextLevelName)
-                                {
-                                    // nextBoardIndex = DataSaver.ReadCategoryCurrentIndexValues(gameLevelData.levelRecords[i].levelName);
-                                    var temp = DataSaver.ReadLevelCurrentIndexValues(section.levelDatas.levelRecords[i].levelName);
-                                    nextBoardIndex = (int)temp.z;
-                                    readNextLevelName = false;
+                        Debug.Log("Current board index: " + currentBoardIndex);
+                        Debug.Log("Current board name: " + level.Boards[currentBoardIndex].Name);
+                        Debug.Log("Next board index: " + nextBoardIndex);
+                        Debug.Log("Next board name: " + level.Boards[nextBoardIndex].Name);
+                        currentGameData.selectedBoardName = level.Boards[nextBoardIndex].Name;
+                        currentGameData.selectedBoardData = level.Boards[nextBoardIndex].boardData;
 
-                                }
+                        int score = (int)(level.Boards[nextBoardIndex].boardData.timeInSeconds * 10);
 
-                                if (section.levelDatas.levelRecords[i].levelName == levelName)
-                                {
-                                    // nextBoardIndex = currentBoardIndex + 1;
-                                    // if(nextBoardIndex < gameLevelData.levelRecords.Count){
-                                    //     DataSaver.SaveCategoryData(gameLevelData.levelRecords[nextBoardIndex].levelName, 0);
-                                    //     loadNextLevel = true;
-                                    // }
-                                    // else{
-                                    //     readNextLevelName = true;
-                                    // }
-                                    readNextLevelName = true;
-                                    currentLevelIndex = i;
-                                }
-                            }
+                        BoardList currentBoard = level.Boards[currentBoardIndex];
+                        currentBoard.isCompleted = true;
+                        currentBoard.Score = score;
+                        gameDataSelector.savingFile.SaveBoardData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentGameData.selectedLevelName, currentBoard);
+                        BoardList nextBoard = level.Boards[nextBoardIndex];
+                        nextBoard.isLock = false;
+                        nextBoard.index = nextBoardIndex;
+                        gameDataSelector.savingFile.SaveBoardData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentGameData.selectedLevelName, nextBoard);
+                        loadNextLevel = true;
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("MainMenu");
+                    }
+                    break;
+                }
+            }
 
-                            var currentLevelSize = section.levelDatas.levelRecords[currentLevelIndex].boardData.Count; // dem so board cua level hien tai
-                            if (currentBoardIndex < currentLevelSize)
-                            {
-                                currentBoardIndex++;
-                            }
-                            DataSaver.SaveLevelData(section.levelDatas.levelRecords[currentLevelIndex].levelName, new Vector3(idxCategory, idxSection, currentBoardIndex));
-                            DataSaver.SaveSectionData(section.sectionName, new Vector2(idxCategory, currentLevelIndex));
-                            DataSaver.SaveCategoryData(categoryName, currentBoardIndex);
+            int currentLevelSize = section.Levels.Find(l => l.Name == currentGameData.selectedLevelName).Boards.Count;
 
-                            //unlock next level
-                            if (currentBoardIndex >= currentLevelSize)
-                            {
-                                currentLevelIndex++;
-                                if (currentLevelIndex < section.levelDatas.levelRecords.Count)
-                                { // if not last level
-                                    levelName = section.levelDatas.levelRecords[currentLevelIndex].levelName;
-                                    currentBoardIndex = 0;
-                                    loadNextLevel = true;
-
-                                    if (nextBoardIndex <= 0)
-                                    {
-
-                                        // DataSaver.SaveCategoryData(levelName, currentBoardIndex);
-                                        DataSaver.SaveLevelData(levelName, new Vector3(idxCategory, idxSection, currentBoardIndex));
-                                    }
-                                }
-                                else
-                                {
-                                    SceneManager.LoadScene("MainMenu");
-                                }
-                            }
-                            else
-                            {
-                                GameEvents.BoardCompleteMethod();
-                            }
-
-                            if (loadNextLevel)
-                            {
-                                GameEvents.OnUnlockNextLevelMethod();
-                            }
-
-                        }
+            Debug.Log("Current board index: " + currentBoardIndex);
+            Debug.Log("Current level size: " + currentLevelSize);
+            if ((currentBoardIndex + 1) >= currentLevelSize)
+            {
+                int currentLevelIndex = 0;
+                for (int i = 0; i < section.Levels.Count; i++)
+                {
+                    if (section.Levels[i].Name == currentGameData.selectedLevelName)
+                    {
+                        currentLevelIndex = i;
+                        break;
                     }
                 }
+
+                if ((currentLevelIndex + 1) < section.Levels.Count)
+                {
+                    Level currentLevel = section.Levels[currentLevelIndex];
+                    // currentLevel.isLock = true;
+                    gameDataSelector.savingFile.SaveLevelData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentLevel);
+                    Level nextLevel = section.Levels[currentLevelIndex + 1];
+                    nextLevel.isLock = false;
+                    gameDataSelector.savingFile.SaveLevelData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, nextLevel);
+                    loadNextLevel = true;
+                }
+                else
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
+            }
+            else
+            {
+                Debug.Log("Board complete");
+                GameEvents.BoardCompleteMethod();
+            }
+            if (loadNextLevel)
+            {
+                GameEvents.OnUnlockNextLevelMethod();
             }
         }
     }
+    // private void CheckBoardComplete()
+    // {
+    //     bool loadNextLevel = false;
+    //     if (currentGameData.selectedBoardData.SearchWords.Count == _completedWords)
+    //     {
+
+    //         var categoryName = currentGameData.selectedCategoryName;
+    //         var sectionName = currentGameData.selectedSectionName;
+    //         var levelName = currentGameData.selectedLevelName;
+
+    //         Section section = gameDataSelector.savingFile.LoadSection(categoryName, sectionName);
+    //         Level level = gameDataSelector.savingFile.LoadLevel(categoryName, sectionName, levelName);
+
+    //         var currentBoardIndex = 0;
+    //         var nextBoardIndex = -1;
+    //         var currentLevelIndex = 0;
+    //         bool readNextLevelName = false;
+    //         foreach (var dataCat in gameCategoryData.categoryRecords)
+    //         {
+    //             if (dataCat.selectedCategoryName == categoryName)
+    //             {
+    //                 int idxCategory = DataSaver.ReadCategoryCurrentIndexValues(categoryName);
+    //                 foreach (var section in dataCat.sectionDatas.sectionRecords)
+    //                 {
+    //                     if (section.sectionName == sectionName)
+    //                     {
+    //                         var tempIdx = DataSaver.ReadSectionCurrentIndexValues(sectionName);
+    //                         int idxSection = (int)tempIdx.y;
+    //                         // foreach(var dataLevel in gameLevelData.levelDatas){
+    //                         //     if(dataLevel.levelName == levelName){
+    //                         //         nextBoardIndex = currentBoardIndex + 1;
+    //                         //         if(nextBoardIndex < dataLevel.boardData.Count){
+    //                         //             DataSaver.SaveCategoryData(levelName, nextBoardIndex);
+    //                         //             loadNextLevel = true;
+    //                         //         }
+    //                         //     }
+    //                         // }
+    //                         for (int i = 0; i < section.levelDatas.levelRecords.Count; i++)
+    //                         {
+    //                             if (readNextLevelName)
+    //                             {
+    //                                 // nextBoardIndex = DataSaver.ReadCategoryCurrentIndexValues(gameLevelData.levelRecords[i].levelName);
+    //                                 var temp = DataSaver.ReadLevelCurrentIndexValues(section.levelDatas.levelRecords[i].levelName);
+    //                                 nextBoardIndex = (int)temp.z;
+    //                                 readNextLevelName = false;
+
+    //                             }
+
+    //                             if (section.levelDatas.levelRecords[i].levelName == levelName)
+    //                             {
+    //                                 // nextBoardIndex = currentBoardIndex + 1;
+    //                                 // if(nextBoardIndex < gameLevelData.levelRecords.Count){
+    //                                 //     DataSaver.SaveCategoryData(gameLevelData.levelRecords[nextBoardIndex].levelName, 0);
+    //                                 //     loadNextLevel = true;
+    //                                 // }
+    //                                 // else{
+    //                                 //     readNextLevelName = true;
+    //                                 // }
+    //                                 readNextLevelName = true;
+    //                                 currentLevelIndex = i;
+    //                             }
+    //                         }
+
+    //                         var currentLevelSize = section.levelDatas.levelRecords[currentLevelIndex].boardData.Count; // dem so board cua level hien tai
+    //                         if (currentBoardIndex < currentLevelSize)
+    //                         {
+    //                             currentBoardIndex++;
+    //                         }
+    //                         DataSaver.SaveLevelData(section.levelDatas.levelRecords[currentLevelIndex].levelName, new Vector3(idxCategory, idxSection, currentBoardIndex));
+    //                         DataSaver.SaveSectionData(section.sectionName, new Vector2(idxCategory, currentLevelIndex));
+    //                         DataSaver.SaveCategoryData(categoryName, currentBoardIndex);
+
+    //                         //unlock next level
+    //                         if (currentBoardIndex >= currentLevelSize)
+    //                         {
+    //                             currentLevelIndex++;
+    //                             if (currentLevelIndex < section.levelDatas.levelRecords.Count)
+    //                             { // if not last level
+    //                                 levelName = section.levelDatas.levelRecords[currentLevelIndex].levelName;
+    //                                 currentBoardIndex = 0;
+    //                                 loadNextLevel = true;
+
+    //                                 if (nextBoardIndex <= 0)
+    //                                 {
+
+    //                                     // DataSaver.SaveCategoryData(levelName, currentBoardIndex);
+    //                                     DataSaver.SaveLevelData(levelName, new Vector3(idxCategory, idxSection, currentBoardIndex));
+    //                                 }
+    //                             }
+    //                             else
+    //                             {
+    //                                 SceneManager.LoadScene("MainMenu");
+    //                             }
+    //                         }
+    //                         else
+    //                         {
+    //                             GameEvents.BoardCompleteMethod();
+    //                         }
+
+    //                         if (loadNextLevel)
+    //                         {
+    //                             GameEvents.OnUnlockNextLevelMethod();
+    //                         }
+
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelButtonInit : MonoBehaviour
 {
@@ -10,14 +11,14 @@ public class LevelButtonInit : MonoBehaviour
     public GameObject levelButtonPrefab;
 
     SavingFile savingFile;
-    void Start()
+    void Awake()
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
-        InitializeCategoryList();
+        InitializeLevelList();
     }
 
-    public void InitializeCategoryList()
+    public void InitializeLevelList()
     {
         if (data.DataSet != null)
         {
@@ -25,20 +26,32 @@ public class LevelButtonInit : MonoBehaviour
             {
                 if (category.CategoryName == currentGameData.selectedCategoryName)
                 {
+                    // Debug.Log(category.CategoryName + " = " + currentGameData.selectedCategoryName);
                     foreach (Section section in category.Sections)
                     {
                         if (section.SectionName == currentGameData.selectedSectionName)
                         {
+                            // Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
                             foreach (Level level in section.Levels)
                             {
-                                GameObject levelButton = Instantiate(levelButtonPrefab, transform);
+                                Button levelButton = Instantiate(levelButtonPrefab, transform).GetComponent<Button>();
                                 levelButton.GetComponent<LevelButton>().Init(level.Name, level.isLock);
+                                levelButton.interactable = !level.isLock;
+                            
                             }
-                            break; 
+                            break;
                         }
+                        // else
+                        // {
+                        //     Debug.Log(section.SectionName + " != " + currentGameData.selectedSectionName);
+                        // }
                     }
                     break;
                 }
+                // else
+                // {
+                //     Debug.Log(category.CategoryName + " != " + currentGameData.selectedCategoryName);
+                // }
             }
         }
     }

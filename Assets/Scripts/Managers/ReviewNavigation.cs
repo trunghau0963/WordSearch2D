@@ -9,11 +9,20 @@ public class ReviewNavigation : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] panels;
+
+    [SerializeField] private GameObject[] buttons;
     public GameData gameData;
     // Start is called before the first frame update
     void Start()
     {
         SwitchToLevel();
+        Console.WriteLine("size of panels: " + panels.Length);
+        for (int i = 1; i < panels.Length; i++)
+        {
+            panels[i].SetActive(false);
+        }
+        panels[0].SetActive(true);
+        EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
     }
     public void SwitchToCategory()
     {
@@ -29,4 +38,34 @@ public class ReviewNavigation : MonoBehaviour
     {
         gameData.selectedLevelName = "";
     }
+
+        public void ShowPanel(GameObject activePanel)
+    {
+        foreach (GameObject panel in panels)
+        {
+            if (panel == activePanel)
+            {
+                panel.SetActive(true);
+            }
+            else
+            {
+                panel.SetActive(false);
+            }
+        }
+    }
+
+    public void GoToLevel()
+    {
+        ShowPanel(panels[0]);
+    }
+    public void GoToSection()
+    {
+        ShowPanel(panels[1]);
+    }
+
+    public void GoToCategory()
+    {
+        ShowPanel(panels[2]);
+    }
+
 }

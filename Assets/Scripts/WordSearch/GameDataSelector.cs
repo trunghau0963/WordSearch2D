@@ -8,63 +8,61 @@ using UnityEngine;
 public class GameDataSelector : MonoBehaviour
 {
     public GameData currentGameData;
-    public GameCategoryData gameCategoryData;
+
+    public GameDataSave data;
+
+    public SavingFile savingFile;
+
+
 
     void Awake()
     {
+        savingFile = FindAnyObjectByType<SavingFile>();
+        data = savingFile.LoadData();
         SelectSequentalBoardData();
     }
 
     private void SelectSequentalBoardData()
     {
-        bool found = false;
-
-        foreach (var data in gameCategoryData.categoryRecords)
+        if (data.DataSet != null)
         {
-            if (data.selectedCategoryName == currentGameData.selectedCategoryName)
+            foreach (var category in data.DataSet)
             {
-                print("Category Name in gamedataselector: " + data.selectedCategoryName);
-                foreach (var dataSecData in data.sectionDatas.sectionRecords)
+                if (category.CategoryName == currentGameData.selectedCategoryName)
                 {
-                    print("Section Name gamedataselector outline: " + dataSecData.sectionName);
-
-                    if (dataSecData.sectionName == currentGameData.selectedSectionName)
+                    foreach (var section in category.Sections)
                     {
-                        print("Section Name gamedataselector: " + dataSecData.sectionName);
-                        foreach (var dataLevel in dataSecData.levelDatas.levelRecords)
+                        if (section.SectionName == currentGameData.selectedSectionName)
                         {
-                            print("Board Name gamedataselector outline: " + dataLevel.levelName);
-                            if (dataLevel.levelName == currentGameData.selectedLevelName)
+                            foreach (var level in section.Levels)
                             {
-                                print("Board Name gamedataselector: " + dataLevel.levelName);
-                                // important
-                                var boardIndex = DataSaver.ReadLevelCurrentIndexValues(currentGameData.selectedLevelName); // read index value doc level hien tai
-                                print("boardIndex: " + boardIndex);
-                                if (boardIndex.z < dataLevel.boardData.Count)
+                                if (level.Name == currentGameData.selectedLevelName)
                                 {
-                                    currentGameData.selectedBoardData = dataLevel.boardData[(int)boardIndex.z];
+                                    foreach (var board in level.Boards)
+                                    {
+                                        // Skip the board if it is completed
+                                        if (board.isCompleted && !board.isLock)
+                                        {
+                                            continue;
+                                        }
+                                        if (!board.isLock)
+                                        {
+                                            // Debug.Log("Board Name gamedataselector outline: " + board.Name);
+                                            if (board.index < level.Boards.Count)
+                                            {
+                                                currentGameData.selectedBoardName = board.Name;
+                                                currentGameData.selectedBoardData = board.boardData;
+                                                return;
+                                            }
+                                        }
+                                    }
+                                    return;
                                 }
-                                else
-                                {
-                                    var randomIndex = Random.Range(0, dataLevel.boardData.Count);
-                                    currentGameData.selectedBoardData = dataLevel.boardData[randomIndex];
-                                }
-                                found = true;
-                                break;
                             }
-                            if (found) break;
                         }
-                        if (found) break;
                     }
-                    if (found) break;
                 }
-                if (found) break;
             }
-        }
-
-        if (!found)
-        {
-            print("board data Eror");
         }
     }
 }

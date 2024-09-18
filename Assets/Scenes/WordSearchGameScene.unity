@@ -2320,7 +2320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
-  gameCategoryData: {fileID: 11400000, guid: babf8276666b55f499c82b76bc07b3dd, type: 2}
+  dataSave:
+    DataSet: []
 --- !u!1 &1387930286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,6 +2855,7 @@ GameObject:
   - component: {fileID: 1633647505}
   - component: {fileID: 1633647508}
   - component: {fileID: 1633647509}
+  - component: {fileID: 1633647510}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2948,7 +2950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
-  gameCategoryData: {fileID: 11400000, guid: babf8276666b55f499c82b76bc07b3dd, type: 2}
+  data:
+    DataSet: []
 --- !u!114 &1633647509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2961,6 +2964,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e17f1669c51e8c44bd6215b3835f5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1633647510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633647504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f589fba362b7d0f4cb117fa5e669ba92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    DataSet: []
+  nameFile: wordsearchsave
 --- !u!1 &1688004898
 GameObject:
   m_ObjectHideFlags: 0

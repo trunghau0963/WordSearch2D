@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -237, y: 0.000020742}
-  m_SizeDelta: {x: 291.32, y: 63.95}
+  m_AnchoredPosition: {x: -42.81372, y: 8.5448}
+  m_SizeDelta: {x: 679.6925, y: 81.0395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1770117779044690837
 CanvasRenderer:
@@ -460,10 +460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
-  gameCategoryData: {fileID: 11400000, guid: babf8276666b55f499c82b76bc07b3dd, type: 2}
-  sectionText: {fileID: 7437154341995576859}
-  progressBarFilling: {fileID: 2331297536236972569}
-  lockImage: {fileID: 4976891331530454788}
 --- !u!114 &6382080096915616100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +474,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLock: {fileID: 4976891331530454788}
   title: {fileID: 5520198301358238329}
+  progressText: {fileID: 7437154341995576859}
   progressBarFilling: {fileID: 2331297536236972569}
+  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
 --- !u!1 &6199186153078221472
 GameObject:
   m_ObjectHideFlags: 0

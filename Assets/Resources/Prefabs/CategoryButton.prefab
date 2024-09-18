@@ -264,8 +264,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -324.36, y: -40.85}
-  m_SizeDelta: {x: 84.21, y: 30}
+  m_AnchoredPosition: {x: -304.30536, y: -40.85}
+  m_SizeDelta: {x: 124.3193, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8554249384474593487
 CanvasRenderer:
@@ -555,4 +555,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 7040448705161357861}
   progressBarFilling: {fileID: 5399873635655622063}
+  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
   textProgress: {fileID: 411969270263591396}

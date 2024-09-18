@@ -2,7 +2,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-
+[System.Serializable]
+public class ScoreData
+{
+    public int score;
+}
 [System.Serializable]
 public class GameDataSave
 {
@@ -41,38 +45,44 @@ public class BoardList
 
     public string Name;
     public bool isLock;
+    public bool isCompleted = false;
+    public int index;
     public int Score;
     public BoardData boardData;
 }
 
 public class SavingFile : MonoBehaviour
 {
-    public string categoryName;
-    public string sectionName;
-    public string levelName;
-
-    public string boardName;
-    public int score;
-    public int time;
-    public bool isLock;
     public GameDataSave data;
 
-    public GameObject CategoryList;
-    public GameObject SectionList;
-    public GameObject LevelList;
-
     public string nameFile;
+
+    public ScoreData score;
+
+    string fileScore = "score.json";
 
     void Start()
     {
         // data = ScriptableObject.CreateInstance<GameData>();
         // data.Initialize();
         data = LoadData();
+        score = LoadScoreFromJson();
         // SaveData();
     }
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            SaveData();
+            SaveScoreToJson();
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveData();
+        SaveScoreToJson();
     }
 
 
@@ -153,6 +163,148 @@ public class SavingFile : MonoBehaviour
 
     }
 
+    public Category LoadCategory(string categoryName)
+    {
+        Category category = data.DataSet.Find(c => c.CategoryName == categoryName);
+        if (category == null)
+        {
+            Debug.Log("Category not found");
+            return null;
+        }
+        return category;
+    }
+
+    public Section LoadSection(string categoryName, string sectionName)
+    {
+        Category category = LoadCategory(categoryName);
+        if (category == null)
+        {
+            Debug.Log("Category not found");
+            return null;
+        }
+
+        Section section = category.Sections.Find(s => s.SectionName == sectionName);
+        if (section == null)
+        {
+            Debug.Log("Section not found");
+            return null;
+        }
+        return section;
+    }
+
+    public Level LoadLevel(string categoryName, string sectionName, string levelName)
+    {
+        Section section = LoadSection(categoryName, sectionName);
+        if (section == null)
+        {
+            Debug.Log("Section not found");
+            return null;
+        }
+
+        Level level = section.Levels.Find(l => l.Name == levelName);
+        if (level == null)
+        {
+            Debug.Log("Level not found");
+            return null;
+        }
+        return level;
+    }
+
+    public BoardList LoadBoardList(string categoryName, string sectionName, string levelName, string boardName)
+    {
+        Level level = LoadLevel(categoryName, sectionName, levelName);
+        if (level == null)
+        {
+            Debug.Log("Level not found");
+            return null;
+        }
+
+        BoardList board = level.Boards.Find(b => b.Name == boardName);
+        if (board == null)
+        {
+            Debug.Log("Board not found");
+            return null;
+        }
+        return board;
+    }
+
+    public void SaveCategoryData(Category category)
+    {
+        Category categoryData = data.DataSet.Find(c => c.CategoryName == category.CategoryName);
+        if (categoryData == null)
+        {
+            data.DataSet.Add(category);
+        }
+        else
+        {
+            categoryData = category;
+        }
+        SaveData();
+    }
+
+    public void SaveSectionData(string categoryName, Section section)
+    {
+        Category category = LoadCategory(categoryName);
+        if (category == null)
+        {
+            Debug.Log("Category not found");
+            return;
+        }
+
+        Section sectionData = category.Sections.Find(s => s.SectionName == section.SectionName);
+        if (sectionData == null)
+        {
+            category.Sections.Add(section);
+        }
+        else
+        {
+            sectionData = section;
+        }
+        SaveData();
+    }
+
+    public void SaveLevelData(string categoryName, string sectionName, Level level)
+    {
+        Section section = LoadSection(categoryName, sectionName);
+        if (section == null)
+        {
+            Debug.Log("Section not found");
+            return;
+        }
+
+        Level levelData = section.Levels.Find(l => l.Name == level.Name);
+        if (levelData == null)
+        {
+            section.Levels.Add(level);
+        }
+        else
+        {
+            levelData = level;
+        }
+        SaveData();
+    }
+
+    public void SaveBoardData(string categoryName, string sectionName, string levelName, BoardList board)
+    {
+        Level level = LoadLevel(categoryName, sectionName, levelName);
+        if (level == null)
+        {
+            Debug.Log("Level not found");
+            return;
+        }
+
+        BoardList boardData = level.Boards.Find(b => b.Name == board.Name);
+        if (boardData == null)
+        {
+            level.Boards.Add(board);
+        }
+        else
+        {
+            boardData = board;
+        }
+        SaveData();
+    }
+
     public GameDataSave LoadData()
     {
         string file = nameFile + ".json";
@@ -174,6 +326,30 @@ public class SavingFile : MonoBehaviour
 
         return data;
     }
+
+    public GameDataSave LoadData(string nameFile)
+    {
+        string file = nameFile + ".json";
+        string filePath = Path.Combine(Application.persistentDataPath, file);
+        GameDataSave data = new GameDataSave();
+
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            data = JsonUtility.FromJson<GameDataSave>(json);
+            Debug.Log("Data Loaded");
+        }
+        else
+        {
+            // GameDataSave data = new GameDataSave();
+            // data.DataSet = new List<Category>();
+            Debug.Log("No Data Found");
+        }
+
+        return data;
+    }
+
+
     public void SaveData()
     {
         string file = nameFile + ".json";
@@ -183,5 +359,70 @@ public class SavingFile : MonoBehaviour
         File.WriteAllText(filePath, json);
 
         Debug.Log("Data Saved to: " + filePath);
+    }
+
+    public void SaveData(string nameFile)
+    {
+        string file = nameFile + ".json";
+        string filePath = Path.Combine(Application.persistentDataPath, file);
+
+        string json = JsonUtility.ToJson(data);  // true for pretty-printing the JSON
+        File.WriteAllText(filePath, json);
+
+        Debug.Log("Data Saved to: " + filePath);
+    }
+
+    public ScoreData LoadScoreFromJson()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, fileScore);
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                score = JsonUtility.FromJson<ScoreData>(json);
+            }
+            catch (IOException e)
+            {
+                Debug.LogError("Error reading score file: " + e.Message);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Score file not found, initializing score to 0.");
+            score.score = 0;
+        }
+        return new ScoreData { score = score.score };
+    }
+
+    public void SaveScoreToJson()
+    {
+        int totalScore = 0;
+        string filePath = Path.Combine(Application.persistentDataPath, fileScore);
+        foreach (Category category in data.DataSet)
+        {
+            foreach (Section section in category.Sections)
+            {
+                foreach (Level level in section.Levels)
+                {
+                    foreach (BoardList board in level.Boards)
+                    {
+                        totalScore += board.Score;
+                    }
+                }
+            }
+        }
+        score.score = totalScore;
+        ScoreData scoreData = new ScoreData { score = totalScore };
+        string json = JsonUtility.ToJson(scoreData);
+        try
+        {
+            File.WriteAllText(filePath, json);
+            Debug.Log("Score Saved on path " + filePath);
+        }
+        catch (IOException e)
+        {
+            Debug.LogError("Error writing score file: " + e.Message);
+        }
     }
 }

@@ -16,15 +16,19 @@ public class SectionInit : MonoBehaviour
 
     int finishedLevelCount = 0;
 
+    int totalBoardCount = 0;
+
+    int finishedBoardCount = 0;
+
     SavingFile savingFile;
-    void Start()
+    void Awake()
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
-        InitializeCategoryList();
+        InitializeSectionList();
     }
 
-    public void InitializeCategoryList()
+    public void InitializeSectionList()
     {
         if (data.DataSet != null)
         {
@@ -34,25 +38,34 @@ public class SectionInit : MonoBehaviour
                 {
                     foreach (Section section in category.Sections)
                     {
-                        if (section.SectionName == currentData.selectedSectionName)
+                        totalLevelCount = 0;
+                        finishedLevelCount = 0;
+                        foreach (Level level in section.Levels)
                         {
-                            totalLevelCount = 0;
-                            finishedLevelCount = 0;
-                            foreach (Level level in section.Levels)
+                            totalLevelCount++;
+                            if (level.isLock == false)
                             {
-                                totalLevelCount++;
-                                if (level.isLock == false)
+                                finishedLevelCount++;
+                            }
+
+                            foreach (BoardList board in level.Boards)
+                            {
+                                totalBoardCount++;
+                                if (board.isLock == false)
                                 {
-                                    finishedLevelCount++;
+                                    finishedBoardCount++;
                                 }
                             }
-                            GameObject sectionButton = Instantiate(sectionButtonPrefab, transform);
-                            sectionButton.GetComponent<SectionButton>().Init(section.SectionName, finishedLevelCount / totalLevelCount, section.isLock);
-                            // sectionButton.interactable = !section.isLock;
 
                         }
-                        break;
+                        string textProgress = (finishedBoardCount / totalBoardCount).ToString() + " %";
+                        Button sectionButton = Instantiate(sectionButtonPrefab, transform).GetComponent<Button>();
+                        sectionButton.GetComponent<SectionButton>().Init(section.SectionName, (float)finishedLevelCount / totalLevelCount, section.isLock, textProgress);
+                        sectionButton.interactable = !section.isLock;
+                        // Debug.Log(section.SectionName + " " + (float)finishedLevelCount / totalLevelCount);
+
                     }
+                    break;
                 }
             }
         }

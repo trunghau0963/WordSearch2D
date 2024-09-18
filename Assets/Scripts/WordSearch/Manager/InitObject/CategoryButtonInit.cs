@@ -15,7 +15,7 @@ public class CategoryButtonInit : MonoBehaviour
     int totalSectionCount = 0;
 
     SavingFile savingFile;
-    void Start()
+    void Awake()
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
@@ -40,9 +40,9 @@ public class CategoryButtonInit : MonoBehaviour
                 }
 
                 string textProgress = finishedSectionCount + "/" + totalSectionCount;
-                GameObject categoryButton = Instantiate(categoryButtonPrefab, transform);
-                categoryButton.GetComponent<CategoryButton>().Init(category.CategoryName, (float)finishedSectionCount / totalSectionCount, "0/6y");
-                // categoryButton.GetComponent<Button>().interactable = !category.isLock;
+                Button categoryButton = Instantiate(categoryButtonPrefab, transform).GetComponent<Button>();
+                categoryButton.GetComponent<CategoryButton>().Init(category.CategoryName, (float)finishedSectionCount / totalSectionCount, textProgress);
+                categoryButton.interactable = !category.isLock;
                 // Debug.Log(category.CategoryName + " " + (float)finishedSectionCount / totalSectionCount);
             }
         }

@@ -261,8 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
-  gameCategoryData: {fileID: 11400000, guid: babf8276666b55f499c82b76bc07b3dd, type: 2}
-  Lock: {fileID: 5682148412978349514}
 --- !u!114 &5799588976940832966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,3 +305,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLock: {fileID: 5682148412978349514}
   Name: {fileID: 9152366345468383277}
+  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
