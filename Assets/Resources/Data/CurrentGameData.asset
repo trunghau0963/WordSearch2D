@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbb828738398e40bc467ded7ac03af, type: 3}
   m_Name: CurrentGameData
   m_EditorClassIdentifier: 
-  selectedCategoryName: Life Sciences
-  selectedSectionName: Fit For Life
-  selectedLevelName: Level 1
+  selectedCategoryName: Earth And Space
+  selectedSectionName: Environment and Natural Resource
+  newCategoryName: Earth And Space
+  newSectionName: Environment and Natural Resource
+  selectedLevelName: 
   selectedBoardName: 
   selectedBoardData: {fileID: 11400000, guid: 81d45c3a75bd5ce4d847839cc277bff9, type: 2}

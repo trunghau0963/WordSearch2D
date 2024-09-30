@@ -26,12 +26,12 @@ public class ReviewNavigation : MonoBehaviour
     }
     public void SwitchToCategory()
     {
-        gameData.selectedCategoryName = "";
+        gameData.newCategoryName = "";
     }
 
     public void SwitchToSection()
     {
-        gameData.selectedSectionName = "";
+        gameData.newSectionName = "";
     }
 
     public void SwitchToLevel()

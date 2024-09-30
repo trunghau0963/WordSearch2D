@@ -15,7 +15,21 @@ public class LevelButtonInit : MonoBehaviour
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
+        // InitializeLevelList();
+    }
+
+    void OnEnable(){
+        // Debug.Log("LevelButtonInit: " + currentGameData.selectedCategoryName + " / " + currentGameData.selectedSectionName);
         InitializeLevelList();
+    }
+
+    void OnDisable()
+    {
+        // Reset all the button status
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void InitializeLevelList()

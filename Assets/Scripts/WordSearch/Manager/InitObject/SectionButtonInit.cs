@@ -25,7 +25,22 @@ public class SectionInit : MonoBehaviour
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
+        // InitializeSectionList();
+    }
+
+    void OnEnable()
+    {
         InitializeSectionList();
+    }
+
+    void OnDisable()
+    {
+        // Reset all the button status
+        foreach (Transform child in transform)
+        {
+
+            Destroy(child.gameObject);
+        }
     }
 
     public void InitializeSectionList()
@@ -34,7 +49,8 @@ public class SectionInit : MonoBehaviour
         {
             foreach (Category category in data.DataSet)
             {
-                if (category.CategoryName == currentData.selectedCategoryName)
+                bool des = currentData.selectedCategoryName == currentData.newCategoryName || currentData.newCategoryName == "";
+                if ((des && category.CategoryName == currentData.selectedCategoryName) || (category.CategoryName == currentData.newCategoryName))
                 {
                     foreach (Section section in category.Sections)
                     {
@@ -59,6 +75,7 @@ public class SectionInit : MonoBehaviour
 
                         }
                         string textProgress = (finishedBoardCount / totalBoardCount).ToString() + " %";
+                        Debug.Log("Section Name: " + section.SectionName + " " + (float)finishedLevelCount / totalLevelCount);
                         Button sectionButton = Instantiate(sectionButtonPrefab, transform).GetComponent<Button>();
                         sectionButton.GetComponent<SectionButton>().Init(section.SectionName, (float)finishedLevelCount / totalLevelCount, section.isLock, textProgress);
                         sectionButton.interactable = !section.isLock;

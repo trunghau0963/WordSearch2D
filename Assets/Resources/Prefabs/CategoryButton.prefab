@@ -402,8 +402,8 @@ GameObject:
   - component: {fileID: 4601247889347776397}
   - component: {fileID: 223719415040479260}
   - component: {fileID: 1026363481518861579}
-  - component: {fileID: -7946511265495062205}
   - component: {fileID: 4355000340744712395}
+  - component: {fileID: 8546278594739774962}
   m_Layer: 5
   m_Name: CategoryButton
   m_TagString: Untagged
@@ -528,19 +528,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-7946511265495062205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9135454744222144725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe009499f4035841be9fbae50472d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
 --- !u!114 &4355000340744712395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,3 +544,18 @@ MonoBehaviour:
   progressBarFilling: {fileID: 5399873635655622063}
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
   textProgress: {fileID: 411969270263591396}
+--- !u!114 &8546278594739774962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135454744222144725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 0.80784315}
+  m_EffectDistance: {x: 1, y: -15}
+  m_UseGraphicAlpha: 1

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InitialData : MonoBehaviour
 {
     public GameData gameData;
-    void Start()
+    void Awake()
     {
         // // Xóa tất cả dữ liệu trong PlayerPrefs
         // PlayerPrefs.DeleteAll();
@@ -15,11 +15,9 @@ public class InitialData : MonoBehaviour
 
         // Debug.Log("PlayerPrefs đã được xóa!");
         gameData.selectedCategoryName = "Life Sciences";
-        DataSaver.SaveCategoryData("Life Sciences", 0);
         gameData.selectedSectionName = "Fit For Life";
-        DataSaver.SaveSectionData("Fit For Life", new Vector2(0, 0));
-
-
+        gameData.newCategoryName = "";
+        gameData.newSectionName = "";
     }
 
     // Update is called once per frame

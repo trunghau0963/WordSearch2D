@@ -8,6 +8,9 @@ public class GameData : ScriptableObject
 {
     public string selectedCategoryName;
     public string selectedSectionName;
+
+    public string newCategoryName;
+    public string newSectionName;
     public string selectedLevelName;
 
     public string selectedBoardName;

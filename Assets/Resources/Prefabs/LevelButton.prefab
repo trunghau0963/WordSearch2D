@@ -165,9 +165,9 @@ GameObject:
   - component: {fileID: 2327028371767146310}
   - component: {fileID: 1181623831914387236}
   - component: {fileID: 8567462157112559935}
-  - component: {fileID: -6037096047211987706}
   - component: {fileID: 5799588976940832966}
   - component: {fileID: 8567509898422342731}
+  - component: {fileID: 285053427385363568}
   m_Layer: 5
   m_Name: LevelButton
   m_TagString: Untagged
@@ -248,19 +248,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-6037096047211987706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772475139613707022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b4dc4142489b8a4681fbc6a99207797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
 --- !u!114 &5799588976940832966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,3 +293,18 @@ MonoBehaviour:
   isLock: {fileID: 5682148412978349514}
   Name: {fileID: 9152366345468383277}
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
+--- !u!114 &285053427385363568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772475139613707022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 0.8117647}
+  m_EffectDistance: {x: 2, y: -15}
+  m_UseGraphicAlpha: 1

@@ -33,8 +33,16 @@ public class SectionButton : MonoBehaviour
 
     private void OnButtonClick()
     {
-        Debug.Log("Cliked " + gameObject.name);
-        gameData.selectedSectionName = gameObject.name;
+        gameData.newSectionName = gameObject.name;
+        if (gameData.newCategoryName != "")
+        {
+
+            gameData.selectedSectionName = gameData.newSectionName;
+            gameData.selectedCategoryName = gameData.newCategoryName;
+        }
+        else{
+            gameData.selectedSectionName = gameData.newSectionName;
+        }
         navigation.GoToLevel();
     }
 

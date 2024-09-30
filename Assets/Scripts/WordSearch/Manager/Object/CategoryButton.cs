@@ -33,7 +33,8 @@ public class CategoryButton : MonoBehaviour
 
     private void OnButtonClick()
     {
-        gameData.selectedCategoryName = gameObject.name;
+        gameData.newCategoryName = gameObject.name;
+        // gameData.selectedCategoryName = gameData.newCategoryName;
         navigation.GoToSection();
     }
 }

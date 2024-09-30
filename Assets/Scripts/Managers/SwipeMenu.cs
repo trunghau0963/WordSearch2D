@@ -9,8 +9,9 @@ public class SwipeMenu : MonoBehaviour
     public GameObject scrollbar;
     private GameObject rightButton;
     private GameObject leftButton;
-
     private ChangeNameText changeNameText;
+
+    public Text text;
     float scroll_pos = 0;
     float[] pos;
 
@@ -86,7 +87,9 @@ public class SwipeMenu : MonoBehaviour
                 {
                     changeNameText.ChangeName(transform.GetChild(i).name);
                 }
+                text.text = transform.GetChild(i).name;
                 print(transform.GetChild(i).name);
+                transform.GetChild(i).GetComponent<Pulse>().StartPulsePublic();
 
                 for (int a = 0; a < pos.Length; a++)
                 {
@@ -94,10 +97,10 @@ public class SwipeMenu : MonoBehaviour
                     {
                         transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(0.8f, 0.8f), 0.1f);
                         // text.text = transform.GetChild(a).name;
-                        if (changeNameText != null)
-                        {
-                            changeNameText.ChangeName(transform.GetChild(a).name);
-                        }
+                        // if (changeNameText != null)
+                        // {
+                        //     changeNameText.ChangeName(transform.GetChild(a).name);
+                        // }
                     }
                 }
             }

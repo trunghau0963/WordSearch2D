@@ -12,7 +12,7 @@ public class SetText : MonoBehaviour
 
     public string type;
 
-    public void Start()
+    public void OnEnable()
     {
         text.text = type switch
         {

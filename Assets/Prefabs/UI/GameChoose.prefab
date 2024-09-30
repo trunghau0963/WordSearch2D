@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8828515534316685889}
   - component: {fileID: 8665023347130608289}
   - component: {fileID: 7203869747194573730}
+  - component: {fileID: 1014315933029943035}
   m_Layer: 5
   m_Name: GameChoose
   m_TagString: Untagged
@@ -122,6 +123,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1014315933029943035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99275961460385851}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d617dd2d4828745891485ac3f7ff60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSpeed: 0.05
+  scaleSize: 0.015
+  duration: 0.07
+  waitDuration: 0.03
 --- !u!1 &7484516385322864011
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +150,7 @@ GameObject:
   - component: {fileID: 1241955018913539597}
   - component: {fileID: 7218749541489201581}
   - component: {fileID: 7910939637873747093}
+  - component: {fileID: 4218232435283709731}
   m_Layer: 5
   m_Name: Outline
   m_TagString: Untagged
@@ -197,6 +215,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4218232435283709731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484516385322864011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 10, y: -15}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8343890861007614717
 GameObject:
   m_ObjectHideFlags: 0

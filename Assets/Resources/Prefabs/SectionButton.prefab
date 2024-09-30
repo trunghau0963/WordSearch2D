@@ -321,8 +321,8 @@ GameObject:
   - component: {fileID: 624470897746914645}
   - component: {fileID: 1206526503175589444}
   - component: {fileID: 323951757491523005}
-  - component: {fileID: 6488975822251513163}
   - component: {fileID: 6382080096915616100}
+  - component: {fileID: 251781198648257435}
   m_Layer: 5
   m_Name: SectionButton
   m_TagString: Untagged
@@ -447,19 +447,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6488975822251513163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6061540862863032433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a96652cbb59322342a67132e182806b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
 --- !u!114 &6382080096915616100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +464,21 @@ MonoBehaviour:
   progressText: {fileID: 7437154341995576859}
   progressBarFilling: {fileID: 2331297536236972569}
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
+--- !u!114 &251781198648257435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061540862863032433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.21509439, g: 0.21509439, b: 0.21509439, a: 0.80784315}
+  m_EffectDistance: {x: 0, y: -15}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6199186153078221472
 GameObject:
   m_ObjectHideFlags: 0
