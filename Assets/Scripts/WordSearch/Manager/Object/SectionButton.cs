@@ -14,6 +14,13 @@ public class SectionButton : MonoBehaviour
 
     public GameData gameData;
 
+    SoundManagement audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagement>();
+    }
+
     public void Init(string sectionName, float progress, bool isLocked, string progressTxt)
     {
         gameObject.name = sectionName;
@@ -31,8 +38,10 @@ public class SectionButton : MonoBehaviour
         button.onClick.AddListener(OnButtonClick);
     }
 
+
     private void OnButtonClick()
     {
+        //  audioManager.PlaySFX(audioManager.sfxClipsList[0]);
         gameData.newSectionName = gameObject.name;
         if (gameData.newCategoryName != "")
         {
@@ -40,7 +49,8 @@ public class SectionButton : MonoBehaviour
             gameData.selectedSectionName = gameData.newSectionName;
             gameData.selectedCategoryName = gameData.newCategoryName;
         }
-        else{
+        else
+        {
             gameData.selectedSectionName = gameData.newSectionName;
         }
         navigation.GoToLevel();

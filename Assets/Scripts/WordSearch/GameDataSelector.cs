@@ -16,7 +16,7 @@ public class GameDataSelector : MonoBehaviour
 
 
     void Awake()
-    {
+    {  
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
         SelectSequentalBoardData();

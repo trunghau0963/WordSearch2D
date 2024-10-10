@@ -72,15 +72,16 @@ public class SavingFile : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SaveData();
-            SaveScoreToJson();
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     SaveData();
+        //     SaveScoreToJson();
+        // }
     }
 
     void OnApplicationQuit()
     {
+        // print("Application ending after " + Time.time + " seconds");
         SaveData();
         SaveScoreToJson();
     }
@@ -315,7 +316,7 @@ public class SavingFile : MonoBehaviour
         {
             string json = File.ReadAllText(filePath);
             data = JsonUtility.FromJson<GameDataSave>(json);
-            Debug.Log("Data Loaded");
+            // Debug.Log("Data Loaded");
         }
         else
         {
@@ -337,7 +338,7 @@ public class SavingFile : MonoBehaviour
         {
             string json = File.ReadAllText(filePath);
             data = JsonUtility.FromJson<GameDataSave>(json);
-            Debug.Log("Data Loaded");
+            // Debug.Log("Data Loaded");
         }
         else
         {
@@ -358,7 +359,7 @@ public class SavingFile : MonoBehaviour
         string json = JsonUtility.ToJson(data);  // true for pretty-printing the JSON
         File.WriteAllText(filePath, json);
 
-        Debug.Log("Data Saved to: " + filePath);
+        // Debug.Log("Data Saved to: " + filePath);
     }
 
     public void SaveData(string nameFile)

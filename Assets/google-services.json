@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "200415216922",
+    "firebase_url": "https://word-search-revoluation-default-rtdb.firebaseio.com",
+    "project_id": "word-search-revoluation",
+    "storage_bucket": "word-search-revoluation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200415216922:android:a17acf08684aafc79c58a3",
+        "android_client_info": {
+          "package_name": "com.selab.internship"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hI08igAHCAkGBfLZAMOXvfgBnTPIaSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

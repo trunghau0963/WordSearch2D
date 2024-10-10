@@ -12,6 +12,12 @@ public class LevelButton : MonoBehaviour
     public GameData gameData;
     private string gameSceneName = "WordSearchGameScene";
 
+    SoundManagement audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagement>();
+    }
     public void Init(string levelName, bool isLocked)
     {
         Name.text = levelName;
@@ -28,7 +34,10 @@ public class LevelButton : MonoBehaviour
 
     private void OnButtonClick()
     {
+        // audioManager.PlaySFX(audioManager.sfxClipsList[2]);
         gameData.selectedLevelName = gameObject.name;
         SceneManager.LoadScene(gameSceneName);
     }
+
+
 }

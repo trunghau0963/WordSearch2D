@@ -14,6 +14,13 @@ public class CategoryButton : MonoBehaviour
     // [SerializeField] private GameObject panel;
     ReviewNavigation navigation;
 
+    SoundManagement audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagement>();
+    }
+
 
 
     public void Init(string categoryName, float progress, string progressText)
@@ -33,6 +40,7 @@ public class CategoryButton : MonoBehaviour
 
     private void OnButtonClick()
     {
+        // audioManager.PlaySFX(audioManager.sfxClipsList[0]);
         gameData.newCategoryName = gameObject.name;
         // gameData.selectedCategoryName = gameData.newCategoryName;
         navigation.GoToSection();

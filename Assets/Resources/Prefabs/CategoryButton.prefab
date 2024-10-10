@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 1026363481518861579}
   - component: {fileID: 4355000340744712395}
   - component: {fileID: 8546278594739774962}
+  - component: {fileID: 1283206299970282931}
   m_Layer: 5
   m_Name: CategoryButton
   m_TagString: Untagged
@@ -559,3 +560,16 @@ MonoBehaviour:
   m_EffectColor: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 0.80784315}
   m_EffectDistance: {x: 1, y: -15}
   m_UseGraphicAlpha: 1
+--- !u!114 &1283206299970282931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135454744222144725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a101ac412f7ba241a7e23e849ea42c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxClipIndex: 0

@@ -65,4 +65,5 @@ public class BoardData : ScriptableObject
             Boards[i] = new BoardRow(Rows);
         }
     }
+
 }
