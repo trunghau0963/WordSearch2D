@@ -56,9 +56,11 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
  
         scene.allowSceneActivation = true;
+
  
         progressBar.gameObject.SetActive(false);
- 
+
         yield return transition.AnimateTransitionOut();
+        
     }
 }
