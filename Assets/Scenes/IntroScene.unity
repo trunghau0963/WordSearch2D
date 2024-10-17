@@ -5371,6 +5371,7 @@ GameObject:
   - component: {fileID: 435050027}
   - component: {fileID: 435050026}
   - component: {fileID: 435050030}
+  - component: {fileID: 435050031}
   m_Layer: 5
   m_Name: LevelManager
   m_TagString: Untagged
@@ -5476,6 +5477,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 465539560}
   transitionsContainer: {fileID: 1548523001}
+--- !u!114 &435050031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435050025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f589fba362b7d0f4cb117fa5e669ba92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    DataSet: []
+  nameFile: wordsearchsave
+  score:
+    score: 0
 --- !u!1 &460857630
 GameObject:
   m_ObjectHideFlags: 0

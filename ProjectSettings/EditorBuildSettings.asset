@@ -30,5 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CandyGameScene.unity
     guid: 27ee4561c4e211e4cb0c7f7603f32338
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: b489386dcf8ccb34ab409478701d5748, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: aa37250b2178e5a408b6d0c52bb5317d, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c6b86cb318295524e8ba03bd36163937, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 3e8074eae31dd2f4eac5c5b96d7afe79, type: 2}

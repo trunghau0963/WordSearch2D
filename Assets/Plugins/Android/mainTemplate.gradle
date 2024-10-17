@@ -1,31 +1,3 @@
-// Android Resolver Repos Start
-([rootProject] + (rootProject.subprojects as List)).each {
-    ext {
-        it.setProperty("android.useAndroidX", true)
-        it.setProperty("android.enableJetifier", true)
-    }
-}
-([rootProject] + (rootProject.subprojects as List)).each { project ->
-    project.repositories {
-        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
-        maven {
-            url "https://maven.google.com"
-        }
-        maven {
-            url (unityProjectPath + "/Assets/Firebase/m2repository") // Assets/Firebase/Editor/AppDependencies.xml:22, Assets/Firebase/Editor/AuthDependencies.xml:20, Assets/Firebase/Editor/DatabaseDependencies.xml:22
-        }
-        maven {
-            url "https://android-sdk.is.com/" // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:9
-        }
-        maven {
-            url "https://maven.google.com/" // Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:17, Assets/LevelPlay/Editor/IronSourceSDKDependencies.xml:25
-        }
-        mavenLocal()
-        jcenter()
-        mavenCentral()
-    }
-}
-// Android Resolver Repos End
 apply plugin: 'com.android.library'
 **APPLY_PLUGINS**
 
@@ -49,7 +21,6 @@ dependencies {
 // Android Resolver Exclusions Start
 android {
   packagingOptions {
-      exclude ('/lib/arm64-v8a/*' + '*')
       exclude ('/lib/armeabi/*' + '*')
       exclude ('/lib/mips/*' + '*')
       exclude ('/lib/mips64/*' + '*')
@@ -61,7 +32,7 @@ android {
 android {
     ndkPath "**NDKPATH**"
 
-    compileSdkVersion **APIVERSION**
+    compileSdkVersion 34
     buildToolsVersion '**BUILDTOOLS**'
 
     compileOptions {
