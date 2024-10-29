@@ -19,6 +19,7 @@ public class CategoryButtonInit : MonoBehaviour
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
+        Debug.Log("CategoryButtonInit: " + data.DataSet.Count);
         InitializeCategoryList();
     }
 

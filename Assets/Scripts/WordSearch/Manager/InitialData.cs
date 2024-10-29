@@ -15,7 +15,7 @@ public class InitialData : MonoBehaviour
 
         // Debug.Log("PlayerPrefs đã được xóa!");
         gameData.selectedCategoryName = "Life Sciences";
-        gameData.selectedSectionName = "Fit For Life";
+        gameData.selectedSectionName = "Fit for life";
         gameData.newCategoryName = "";
         gameData.newSectionName = "";
     }

@@ -25,6 +25,7 @@ public class SectionInit : MonoBehaviour
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
+        // Debug.Log("SectionInit: " + data.DataSet.Count);
         // InitializeSectionList();
     }
 

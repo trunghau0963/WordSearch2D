@@ -15,7 +15,6 @@ public class SoundManagement : MonoBehaviour
     [SerializeField] public List<AudioClip> audioClipsList;
     [Tooltip("Add your sfx clips here")]
     [SerializeField] public List<AudioClip> sfxClipsList;
-    private int currentClip = 0;
 
     public static SoundManagement Instance
     {
@@ -23,7 +22,7 @@ public class SoundManagement : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<SoundManagement>();
+                instance = FindAnyObjectByType<SoundManagement>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new();

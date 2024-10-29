@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbb828738398e40bc467ded7ac03af, type: 3}
   m_Name: CurrentGameData
   m_EditorClassIdentifier: 
-  selectedCategoryName: Life Sciences
-  selectedSectionName: Fit For Life
+  selectedCategoryName: 
+  selectedSectionName: 
   newCategoryName: 
   newSectionName: 
   selectedLevelName: 

@@ -15,6 +15,7 @@ public class LevelButtonInit : MonoBehaviour
     {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
+        // Debug.Log("LevelButtonInit: " + data.DataSet.Count);
         // InitializeLevelList();
     }
 
@@ -40,12 +41,13 @@ public class LevelButtonInit : MonoBehaviour
             {
                 if (category.CategoryName == currentGameData.selectedCategoryName)
                 {
-                    // Debug.Log(category.CategoryName + " = " + currentGameData.selectedCategoryName);
+                    Debug.Log(category.CategoryName + " = " + currentGameData.selectedCategoryName);
                     foreach (Section section in category.Sections)
                     {
+                        Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
                         if (section.SectionName == currentGameData.selectedSectionName)
                         {
-                            // Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
+                            Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
                             foreach (Level level in section.Levels)
                             {
                                 Button levelButton = Instantiate(levelButtonPrefab, transform).GetComponent<Button>();

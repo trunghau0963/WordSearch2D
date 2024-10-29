@@ -39,7 +39,7 @@ public class ReviewNavigation : MonoBehaviour
         gameData.selectedLevelName = "";
     }
 
-        public void ShowPanel(GameObject activePanel)
+    public void ShowPanel(GameObject activePanel)
     {
         foreach (GameObject panel in panels)
         {

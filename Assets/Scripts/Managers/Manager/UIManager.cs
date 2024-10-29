@@ -10,8 +10,8 @@ public class UIManager : MonoBehaviour
     //Screen object variables
     public GameObject loginUI;
     public GameObject registerUI;
-    public GameObject userDataUI;
-    public GameObject scoreboardUI;
+    // public GameObject userDataUI;
+    // public GameObject scoreboardUI;
 
     private void Awake()
     {
@@ -32,8 +32,8 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
-        userDataUI.SetActive(false);
-        scoreboardUI.SetActive(false);
+        // userDataUI.SetActive(false);
+        // scoreboardUI.SetActive(false);
     }
 
     public void LoginScreen() //Back button
@@ -50,12 +50,12 @@ public class UIManager : MonoBehaviour
     public void UserDataScreen() //Logged in
     {
         ClearScreen();
-        userDataUI.SetActive(true);
+        // userDataUI.SetActive(true);
     }
 
     public void ScoreboardScreen() //Scoreboard button
     {
         ClearScreen();
-        scoreboardUI.SetActive(true);
+        // scoreboardUI.SetActive(true);
     }
 }
