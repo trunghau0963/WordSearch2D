@@ -19,7 +19,8 @@ public class LevelButtonInit : MonoBehaviour
         // InitializeLevelList();
     }
 
-    void OnEnable(){
+    void OnEnable()
+    {
         // Debug.Log("LevelButtonInit: " + currentGameData.selectedCategoryName + " / " + currentGameData.selectedSectionName);
         InitializeLevelList();
     }
@@ -41,19 +42,21 @@ public class LevelButtonInit : MonoBehaviour
             {
                 if (category.CategoryName == currentGameData.selectedCategoryName)
                 {
-                    Debug.Log(category.CategoryName + " = " + currentGameData.selectedCategoryName);
+                    // Debug.Log(category.CategoryName + " = " + currentGameData.selectedCategoryName);
                     foreach (Section section in category.Sections)
                     {
-                        Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
+                        // Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
                         if (section.SectionName == currentGameData.selectedSectionName)
                         {
-                            Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
-                            foreach (Level level in section.Levels)
+                            // Debug.Log(section.SectionName + " = " + currentGameData.selectedSectionName);
+                            int elementCount = section.Levels.Count;
+                            for (int i = 0; i < elementCount; i++)
                             {
+                                Level level = section.Levels[i];
+                                // Debug.Log("is Even Level " + level.Name + " : " + (i % 2 == 0) + " is Start Level " + (i == 0));
                                 Button levelButton = Instantiate(levelButtonPrefab, transform).GetComponent<Button>();
-                                levelButton.GetComponent<LevelButton>().Init(level.Name, level.isLock);
+                                levelButton.GetComponent<LevelButton>().Init(level.Name, level.isLock, i % 2 == 0, i == elementCount - 1, level.isCompleted);
                                 levelButton.interactable = !level.isLock;
-                            
                             }
                             break;
                         }

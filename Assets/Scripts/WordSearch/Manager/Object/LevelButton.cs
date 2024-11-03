@@ -6,29 +6,74 @@ using UnityEngine.SceneManagement;
 
 public class LevelButton : MonoBehaviour
 {
-    public Image isLock;
-    public Text Name;
 
+    [Header("UI Elements")]
+    public GameObject evenStyle;
+    public GameObject oddStyle;
+    public GameObject startStyle;
+    public GameObject unlockStyle;
+    public Button button;
+    public Text Name;
     public GameData gameData;
     private string gameSceneName = "WordSearchGameScene";
 
-    SoundManagement audioManager;
+    // SoundManagement audioManager;
 
-    private void Awake()
+    // private void Awake()
+    // {
+    //     // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagement>();
+    //     // unlock.gameObject.SetActive(true);
+    //     // isLock.gameObject.SetActive(false);
+    // }
+    public void Init(string levelName, bool isLocked, bool isEvenLevel, bool isEnd, bool isCompleted)
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagement>();
-    }
-    public void Init(string levelName, bool isLocked)
-    {
+
+        if (isEvenLevel)
+        {
+            evenStyle.SetActive(true);
+            if (isCompleted)
+            {
+                unlockStyle.SetActive(true);
+                evenStyle.transform.Find("IsCompleted").GetComponent<Image>().gameObject.SetActive(true);
+            }
+            else
+            {
+                unlockStyle.SetActive(false);
+                evenStyle.transform.Find("LockImage").GetComponent<Image>().gameObject.SetActive(isLocked);
+            }
+            startStyle.SetActive(false);
+            oddStyle.SetActive(false);
+        }
+        else
+        {
+            oddStyle.SetActive(true);
+            if (isCompleted)
+            {
+                unlockStyle.SetActive(true);
+                oddStyle.transform.Find("IsCompleted").GetComponent<Image>().gameObject.SetActive(true);
+            }
+            else
+            {
+                unlockStyle.SetActive(false);
+                oddStyle.transform.Find("LockImage").GetComponent<Image>().gameObject.SetActive(isLocked);
+            }
+            startStyle.SetActive(false);
+            evenStyle.SetActive(false);
+        }
+        if (isEnd)
+        {
+            startStyle.SetActive(true);
+            evenStyle.SetActive(false);
+            oddStyle.SetActive(false);
+            startStyle.transform.Find("LockImage").GetComponent<Image>().gameObject.SetActive(isLocked);
+        }
+        button.interactable = !isLocked;
         Name.text = levelName;
-        isLock.gameObject.SetActive(isLocked);
-
         gameObject.name = levelName;
     }
 
     void Start()
     {
-        var button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
     }
 

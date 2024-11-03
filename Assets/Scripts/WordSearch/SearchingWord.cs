@@ -16,7 +16,7 @@ public class SearchingWord : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void OnEnable()
@@ -29,21 +29,27 @@ public class SearchingWord : MonoBehaviour
         GameEvents.OnCorrectWord -= CorrectWord;
     }
 
-    public void Setword(string word){
+    public void Setword(string word)
+    {
         _word = word;
         displayText.text = word;
     }
 
-    private void CorrectWord(string word, List<int> squareIdx){
-        if(word == _word){
-            print("Correct Word");  
+    private void CorrectWord(string word, List<int> squareIdx)
+    {
+        if (word == _word)
+        {
+            print("Correct Word");
             crossLine.gameObject.SetActive(true);
-            if(crossLine.gameObject.activeSelf){
-                print("Cross Line Active");
+            if (crossLine.gameObject.activeSelf)
+            {
+                // print("Cross Line Active");
             }
-            else{
-                print("Cross Line Not Active");
+            else
+            {
+                // print("Cross Line Not Active");
             }
         }
     }
+
 }

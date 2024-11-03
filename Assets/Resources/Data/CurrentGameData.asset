@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbb828738398e40bc467ded7ac03af, type: 3}
   m_Name: CurrentGameData
   m_EditorClassIdentifier: 
-  selectedCategoryName: 
-  selectedSectionName: 
-  newCategoryName: 
-  newSectionName: 
+  selectedCategoryName: Life Sciences
+  selectedSectionName: Fit for life
+  newCategoryName: Life Sciences
+  newSectionName: Fit for life
   selectedLevelName: 
-  selectedBoardName: 
-  selectedBoardData: {fileID: 0}
+  selectedBoardName: Board 1
+  selectedBoardData: {fileID: 11400000, guid: 78e47b8f56343f24a8c9adb75ad304e4, type: 2}

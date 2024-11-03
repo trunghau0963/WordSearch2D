@@ -16,7 +16,7 @@ public class GameDataSelector : MonoBehaviour
 
 
     void Awake()
-    {  
+    {
         savingFile = FindAnyObjectByType<SavingFile>();
         data = savingFile.LoadData();
         SelectSequentalBoardData();
@@ -40,14 +40,25 @@ public class GameDataSelector : MonoBehaviour
                                 {
                                     foreach (var board in level.Boards)
                                     {
-                                        // Skip the board if it is completed
-                                        if (board.isCompleted && !board.isLock)
+                                        if (!level.isCompleted)
                                         {
-                                            continue;
+                                            // Skip the board if it is completed
+                                            if (board.isCompleted)
+                                            {
+                                                continue;
+                                            }
+                                            // if (!board.isLock)
+                                            // {
+                                            if (board.index < level.Boards.Count)
+                                            {
+                                                currentGameData.selectedBoardName = board.Name;
+                                                currentGameData.selectedBoardData = board.boardData;
+                                                return;
+                                            }
+                                            // }
                                         }
-                                        if (!board.isLock)
-                                        {
-                                            // Debug.Log("Board Name gamedataselector outline: " + board.Name);
+                                        else {
+                                            // if the level is completed, select the next board
                                             if (board.index < level.Boards.Count)
                                             {
                                                 currentGameData.selectedBoardName = board.Name;

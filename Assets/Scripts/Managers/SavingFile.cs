@@ -26,6 +26,7 @@ public class Category
 public class Section
 {
     public string SectionName;
+    public bool isCompleted = false;
     public bool isLock = true;
     public List<Level> Levels;
 }
@@ -36,6 +37,8 @@ public class Level
 {
     public string Name;
     public bool isLock = true;
+    public bool isCompleted = false;
+    public int score;
     public List<BoardList> Boards;
 }
 
@@ -44,10 +47,9 @@ public class BoardList
 {
 
     public string Name;
-    public bool isLock;
+    // public bool isLock = true;
     public bool isCompleted = false;
     public int index;
-    public int Score;
     public BoardData boardData;
 }
 
@@ -122,8 +124,7 @@ public class SavingFile : MonoBehaviour
         {
             board = new BoardList();
             board.Name = boardName;
-            board.Score = score;
-            board.isLock = isLock;
+            // board.isLock = isLock;
             level.Boards.Add(board);
         }
 
@@ -159,8 +160,6 @@ public class SavingFile : MonoBehaviour
             Debug.Log("Board not found");
             return;
         }
-
-        Debug.Log("Score: " + board.Score);
 
     }
 
@@ -287,6 +286,7 @@ public class SavingFile : MonoBehaviour
 
     public void SaveBoardData(string categoryName, string sectionName, string levelName, BoardList board)
     {
+        Debug.Log("SaveBoardData....");
         Level level = LoadLevel(categoryName, sectionName, levelName);
         if (level == null)
         {
@@ -410,10 +410,7 @@ public class SavingFile : MonoBehaviour
             {
                 foreach (Level level in section.Levels)
                 {
-                    foreach (BoardList board in level.Boards)
-                    {
-                        totalScore += board.Score;
-                    }
+                    totalScore += level.score;
                 }
             }
         }

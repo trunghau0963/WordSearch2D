@@ -68,7 +68,7 @@ public class SectionInit : MonoBehaviour
                             foreach (BoardList board in level.Boards)
                             {
                                 totalBoardCount++;
-                                if (board.isLock == false)
+                                if (board.isCompleted == true)
                                 {
                                     finishedBoardCount++;
                                 }

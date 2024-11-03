@@ -26,7 +26,7 @@ public class CountDownTimer : MonoBehaviour
         _stopTimer = false;
 
         GameEvents.OnBoardComplete += StopTimer;
-        GameEvents.OnUnlockNextLevel += StopTimer;
+        GameEvents.OnUnlockNextBoard += StopTimer;
 
     }
 
@@ -45,7 +45,7 @@ public class CountDownTimer : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.OnBoardComplete -= StopTimer;
-        GameEvents.OnUnlockNextLevel -= StopTimer;
+        GameEvents.OnUnlockNextBoard -= StopTimer;
     }
 
     public void StopTimer()

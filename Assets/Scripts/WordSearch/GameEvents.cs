@@ -58,23 +58,34 @@ public static class GameEvents
     }
 
 
-    public delegate void UnlockNextLevel();
-    public static event UnlockNextLevel OnUnlockNextLevel;
-    public static void OnUnlockNextLevelMethod()
+    public delegate void ShowPopup(bool isCompletedLevel);
+    public static event ShowPopup OnShowPopup;
+    public static void ShowPopupMethod(bool isCompletedLevel)
     {
-        if (OnUnlockNextLevel != null)
+        if (OnShowPopup != null)
         {
-            OnUnlockNextLevel();
+            OnShowPopup(isCompletedLevel);
         }
     }
 
-    public delegate void LoadNextLevel();
-    public static event LoadNextLevel OnLoadNextLevel;
-    public static void LoadNextLevelMethod()
+
+    public delegate void UnlockNextBoard();
+    public static event UnlockNextBoard OnUnlockNextBoard;
+    public static void OnUnlockNextBoardMethod()
     {
-        if (OnLoadNextLevel != null)
+        if (OnUnlockNextBoard != null)
         {
-            OnLoadNextLevel();
+            OnUnlockNextBoard();
+        }
+    }
+
+    public delegate void LoadNextBoard();
+    public static event LoadNextBoard OnLoadNextBoard;
+    public static void LoadNextBoardMethod()
+    {
+        if (OnLoadNextBoard != null)
+        {
+            OnLoadNextBoard();
         }
     }
 

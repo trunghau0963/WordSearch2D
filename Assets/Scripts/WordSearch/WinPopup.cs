@@ -1,33 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WinPopup : MonoBehaviour
 {
     public GameObject winPopup;
+    public Button exitButton;
+    bool checkCompletedLevel = false;
     void Start()
     {
         // winPopup = GameObject.Find("WinPopup");
         winPopup.SetActive(false);
     }
 
-    private void OnEnable() {
-        GameEvents.OnBoardComplete += ShowWinPopup;
+    private void OnEnable()
+    {
+        GameEvents.OnShowPopup += ShowWinPopup;
     }
 
-    private void OnDisable() {
-        GameEvents.OnBoardComplete -= ShowWinPopup;
+    private void OnDisable()
+    {
+        GameEvents.OnShowPopup -= ShowWinPopup;
     }
 
-    void ShowWinPopup(){
+    void ShowWinPopup(bool isCompletedLevel)
+    {
         winPopup.SetActive(true);
+        if (isCompletedLevel)
+        {
+            checkCompletedLevel = true;
+            exitButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            checkCompletedLevel = false;
+            exitButton.gameObject.SetActive(true);
+        }
     }
 
-    void CloseWinPopup(){
+    void CloseWinPopup()
+    {
         winPopup.SetActive(false);
     }
 
-    public void loadNextLevel(){
-        GameEvents.LoadNextLevelMethod();
+    public void loadNextBoard()
+    {
+        if (checkCompletedLevel)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            GameEvents.LoadNextBoardMethod();
+        }
+    }
+
+    public void loadMainMenu()
+    {
     }
 }
