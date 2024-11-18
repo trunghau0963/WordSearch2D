@@ -90,7 +90,7 @@ public static class GameEvents
     }
 
 
-    
+
     public delegate void GameOver();
     public static event GameOver OnGameOver;
     public static void GameOverlMethod()
@@ -98,6 +98,66 @@ public static class GameEvents
         if (OnGameOver != null)
         {
             OnGameOver();
+        }
+    }
+
+    public delegate void ShowHint();
+    public static event ShowHint OnShowHint;
+    public static void ShowHintMethod()
+    {
+        if (OnShowHint != null)
+        {
+            OnShowHint();
+        }
+    }
+
+    public delegate void ShowHintLetter(string letter);
+    public static event ShowHintLetter OnShowHintLetter;
+    public static void ShowHintLetterMethod(string letter)
+    {
+        if (OnShowHintLetter != null)
+        {
+            OnShowHintLetter(letter);
+        }
+    }
+
+    public delegate void AddWordToList(string word, string explanation);
+    public static event AddWordToList OnAddWordToList;
+    public static void AddWordToListMethod(string word, string explanation)
+    {
+        if (OnAddWordToList != null)
+        {
+            OnAddWordToList(word, explanation);
+        }
+    }
+
+    public delegate void RemoveWordFromList(string word);
+    public static event RemoveWordFromList OnRemoveWordFromList;
+    public static void RemoveWordFromListMethod(string word)
+    {
+        if (OnRemoveWordFromList != null)
+        {
+            OnRemoveWordFromList(word);
+        }
+    }
+
+    public delegate void CheckWordIsInList(string word, GameObject addWordButton, GameObject removeWordButton);
+    public static event CheckWordIsInList OnCheckWordIsInList;
+    public static void CheckWordIsInListMethod(string word, GameObject addWordButton, GameObject removeWordButton)
+    {
+        if (OnCheckWordIsInList != null)
+        {
+            OnCheckWordIsInList(word, addWordButton, removeWordButton);
+        }
+    }
+
+    public delegate void SaveWordDictionary();
+    public static event SaveWordDictionary OnSaveWordDictionary;
+    public static void SaveWordDictionaryMethod()
+    {
+        if (OnSaveWordDictionary != null)
+        {
+            OnSaveWordDictionary();
         }
     }
 

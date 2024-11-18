@@ -11,6 +11,8 @@ public class SearchingWord : MonoBehaviour
     private string _word;
     void Start()
     {
+        var button = GetComponent<Button>();
+        button.onClick.AddListener(OnButtonClick);
         crossLine.gameObject.SetActive(false);
     }
 
@@ -50,6 +52,11 @@ public class SearchingWord : MonoBehaviour
                 // print("Cross Line Not Active");
             }
         }
+    }
+
+
+    private void OnButtonClick(){
+        FindAnyObjectByType<LoadData>().ShowExplanation(_word);
     }
 
 }

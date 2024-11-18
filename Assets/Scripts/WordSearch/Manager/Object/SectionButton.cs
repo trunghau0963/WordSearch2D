@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SectionButton : MonoBehaviour
 {
     public Image isLock;
-    public Text title;
-    public Text progressText;
+    public TMP_Text title;
+    public TMP_Text progressText;
     public Image progressBarFilling;
 
     ReviewNavigation navigation;

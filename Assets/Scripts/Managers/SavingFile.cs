@@ -309,7 +309,7 @@ public class SavingFile : MonoBehaviour
     public GameDataSave LoadData()
     {
         string file = nameFile + ".json";
-        string filePath = Path.Combine(Application.dataPath, file);
+        string filePath = Path.Combine(Application.dataPath,"Resources", file);
         GameDataSave data = new GameDataSave();
 
         if (File.Exists(filePath))
@@ -333,7 +333,7 @@ public class SavingFile : MonoBehaviour
     public GameDataSave LoadData(string nameFile)
     {
         string file = nameFile + ".json";
-        string filePath = Path.Combine(Application.dataPath, file);
+        string filePath = Path.Combine(Application.dataPath,"Resources", file);
         GameDataSave data = new GameDataSave();
 
         if (File.Exists(filePath))
@@ -358,18 +358,18 @@ public class SavingFile : MonoBehaviour
     public void SaveData()
     {
         string file = nameFile + ".json";
-        string filePath = Path.Combine(Application.dataPath, file);
+        string filePath = Path.Combine(Application.dataPath, "Resources", file);
 
         string json = JsonUtility.ToJson(data);  // true for pretty-printing the JSON
         File.WriteAllText(filePath, json);
 
-        // Debug.Log("Data Saved to: " + filePath);
+        Debug.Log("Data Saved to: " + filePath);
     }
 
     public void SaveData(string nameFile)
     {
         string file = nameFile + ".json";
-        string filePath = Path.Combine(Application.dataPath, file);
+        string filePath = Path.Combine(Application.dataPath,"Resources", file);
 
         string json = JsonUtility.ToJson(data);  // true for pretty-printing the JSON
         File.WriteAllText(filePath, json);
@@ -379,7 +379,7 @@ public class SavingFile : MonoBehaviour
 
     public ScoreData LoadScoreFromJson()
     {
-        string filePath = Path.Combine(Application.dataPath, fileScore);
+        string filePath = Path.Combine(Application.dataPath,"Resources", fileScore);
         if (File.Exists(filePath))
         {
             try
@@ -403,7 +403,7 @@ public class SavingFile : MonoBehaviour
     public void SaveScoreToJson()
     {
         int totalScore = 0;
-        string filePath = Path.Combine(Application.dataPath, fileScore);
+        string filePath = Path.Combine(Application.dataPath,"Resources", fileScore);
         foreach (Category category in data.DataSet)
         {
             foreach (Section section in category.Sections)

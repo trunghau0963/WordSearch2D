@@ -27,6 +27,7 @@ public class WinPopup : MonoBehaviour
 
     void ShowWinPopup(bool isCompletedLevel)
     {
+        FindAnyObjectByType<LoadData>().DestroyAllExplanation();
         winPopup.SetActive(true);
         if (isCompletedLevel)
         {

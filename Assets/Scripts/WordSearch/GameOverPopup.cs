@@ -28,6 +28,7 @@ public class GameOverPopup : MonoBehaviour
 
     public void ShowGameOverPopup()
     {
+        FindAnyObjectByType<LoadData>().DestroyAllExplanation();
         gameOverPopup.SetActive(true);
         continueGameAftersAdsButton.GetComponent<Button>().interactable = true;
     }

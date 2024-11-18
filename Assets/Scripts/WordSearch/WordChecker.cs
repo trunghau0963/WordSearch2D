@@ -246,6 +246,7 @@ public class WordChecker : MonoBehaviour
                     else
                     {
                         GameEvents.ShowPopupMethod(true);
+                        GameEvents.SaveWordDictionaryMethod();
                         // SceneManager.LoadScene("MainMenu");
                     }
                     break;
@@ -282,6 +283,7 @@ public class WordChecker : MonoBehaviour
                 {
                     Debug.Log("Section complete and Show popup event"); 
                     GameEvents.ShowPopupMethod(true);
+                    GameEvents.SaveWordDictionaryMethod();
                     // SceneManager.LoadScene("MainMenu");
                 }
             }
@@ -289,11 +291,13 @@ public class WordChecker : MonoBehaviour
             {
                 Debug.Log("Board complete");
                 GameEvents.BoardCompleteMethod();
+                GameEvents.SaveWordDictionaryMethod();
                 GameEvents.ShowPopupMethod(false);
             }
             if (loadNextBoard)
             {
                 // GameEvents.BoardCompleteMethod();
+                GameEvents.SaveWordDictionaryMethod();
                 GameEvents.OnUnlockNextBoardMethod();
             }
         }

@@ -37,11 +37,14 @@ public class Pulse : MonoBehaviour
         }
     }
 
+
     public void StartPulsePublic(){
         InvokeRepeating("StartPulseCoroutine", 0f, duration);
     }
 
+#pragma warning disable IDE0051 // Remove unused private members
     private void StartPulseCoroutine()
+#pragma warning restore IDE0051 // Remove unused private members
     {
         if (coroutineAllowed)
         {

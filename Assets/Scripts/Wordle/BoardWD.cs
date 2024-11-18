@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [DefaultExecutionOrder(-1)]
 public class BoardWD : MonoBehaviour
@@ -21,9 +22,11 @@ public class BoardWD : MonoBehaviour
     public Tiles.State incorrectState;
 
     [Header("UI")]
-    public GameObject tryAgainButton;
-    public GameObject newWordButton;
+    public GameObject ExplanationPrefab;
+    public Button tryAgainButton;
+    public Button newWordButton;
     public GameObject invalidWordText;
+    public DictionaryDB dictionary = new DictionaryDB();
 
     // Start is called before the first frame update
     private void Awake()
@@ -37,8 +40,20 @@ public class BoardWD : MonoBehaviour
         // NewGame();
         Key.OnKeyPressed += KeyPressCallback;
         // Debug.Log("BoardWD Start");
-        LoadData();
-        NewGame();
+        // LoadData();
+        // solutions = VocabularyList.Instance.words.ToArray();
+        if (VocabularyList.Instance != null)
+        {
+            // VocabularyList.Instance.fileName = "WordDictionary.json";
+            // VocabularyList.Instance.LoadWordDictionary();
+            dictionary = VocabularyList.Instance.dictionaryDB;
+            solutions = dictionary.keys.ToArray();
+            NewGame();
+        }
+        else
+        {
+            Debug.LogError("VocabularyList chưa được khởi tạo.");
+        }
     }
 
 
@@ -64,6 +79,7 @@ public class BoardWD : MonoBehaviour
 
     public void NewGame()
     {
+        Debug.Log("NewGame");
         ClearBoard();
         SetRandomWord();
 
@@ -72,6 +88,7 @@ public class BoardWD : MonoBehaviour
 
     public void TryAgain()
     {
+        Debug.Log("TryAgain");
         ClearBoard();
         enabled = true;
     }
@@ -79,12 +96,15 @@ public class BoardWD : MonoBehaviour
     private void SetRandomWord()
     {
         word = solutions[Random.Range(0, solutions.Length)];
+        string meaning = dictionary.GetValue(word);
         word = word.ToLower().Trim();
+        ExplanationPrefab.GetComponent<ExplanationWord>().SetText(word, meaning);
         Debug.Log("Word: " + word);
     }
 
     private void KeyPressCallback(string letter)
     {
+        Debug.Log("KeyPressCallback: " + letter);
         Row currentRow = rows[rowIndex];
         if (letter == "Delete")
         {
@@ -97,18 +117,26 @@ public class BoardWD : MonoBehaviour
             return;
         }
 
-        if (columnIndex >= currentRow.tiles.Length)
+        if (letter == "SUBMIT")
         {
-            // if(rowIndex < rows.Length)
-            // {
-            //     rowIndex++;
-            //     columnIndex = 0;
-            // }
-            if (letter == "Enter")
+            if (columnIndex >= currentRow.tiles.Length)
             {
+                // if (rowIndex < rows.Length)
+                // {
+                //     rowIndex++;
+                //     columnIndex = 0;
+                // }
+                // if (letter == "SUBMIT")
+                // {
+                // }
                 SubmitRow(currentRow);
                 return;
             }
+            else
+            {
+                return;
+            }
+
         }
         if (rowIndex < rows.Length && columnIndex < rows[rowIndex].tiles.Length && letter != "Enter" && letter != "Delete")
         {
@@ -237,14 +265,14 @@ public class BoardWD : MonoBehaviour
 
     private void OnEnable()
     {
-        tryAgainButton.SetActive(false);
-        newWordButton.SetActive(false);
+        tryAgainButton.interactable = false;
+        newWordButton.interactable = false;
     }
 
     private void OnDisable()
     {
-        tryAgainButton.SetActive(true);
-        newWordButton.SetActive(true);
+        tryAgainButton.interactable = true;
+        newWordButton.interactable = true;
     }
 
 

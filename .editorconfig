@@ -16,4 +16,7 @@ dotnet_diagnostic.UNT0013.severity = none
 dotnet_analyzer_diagnostic.category-CodeQuality.severity = warning
 
 # IDE0051: Remove unused private members
-dotnet_diagnostic.IDE0051.severity = warning
+dotnet_diagnostic.IDE0051.severity = silent
+
+# Default severity for analyzer diagnostics with category 'TypeSafety'
+dotnet_analyzer_diagnostic.category-TypeSafety.severity = suggestion

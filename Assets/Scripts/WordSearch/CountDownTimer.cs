@@ -78,6 +78,7 @@ public class CountDownTimer : MonoBehaviour
     private void ActivateGameOverGUI()
     {
         GameEvents.GameOverlMethod();
+        GameEvents.SaveWordDictionaryMethod();
         _timeOut = true;
 
     }

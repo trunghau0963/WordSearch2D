@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SwipeMenu : MonoBehaviour
 {
     public GameObject scrollbar;
-    private GameObject rightButton;
-    private GameObject leftButton;
+    public GameObject rightButton;
+    public GameObject leftButton;
     private ChangeNameText changeNameText;
 
     public Text text;
@@ -88,7 +88,7 @@ public class SwipeMenu : MonoBehaviour
                     changeNameText.ChangeName(transform.GetChild(i).name);
                 }
                 text.text = transform.GetChild(i).name;
-                print(transform.GetChild(i).name);
+                // print(transform.GetChild(i).name);
                 transform.GetChild(i).GetComponent<Pulse>().StartPulsePublic();
 
                 for (int a = 0; a < pos.Length; a++)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da74a62883085944be0cef5f79531b7, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
-  timeInSeconds: 0
+  timeInSeconds: 100
   Columns: 7
   Rows: 8
   Boards:
@@ -91,11 +91,14 @@ MonoBehaviour:
     Row: 0
     Column: 0
     Direction: 0
+    timeInSeconds: 0
   - Word: EXERCISE
     Row: 0
     Column: 0
     Direction: 0
+    timeInSeconds: 0
   - Word: CALCIUM
     Row: 0
     Column: 0
     Direction: 0
+    timeInSeconds: 0
