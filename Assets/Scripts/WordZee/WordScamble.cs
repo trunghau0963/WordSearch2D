@@ -56,6 +56,8 @@ public class WordScamble : MonoBehaviour
     public int currentWord;
     public static WordScamble main;
 
+    DictionaryDB dictionaryDB = new DictionaryDB();
+
     void Awake()
     {
         main = this;
@@ -63,6 +65,15 @@ public class WordScamble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (VocabularyList.Instance != null)
+        {
+            dictionaryDB = VocabularyList.Instance.dictionaryDB;
+            words = new List<Word>();
+            foreach (var word in dictionaryDB.keys)
+            {
+                words.Add(new Word(word, ""));
+            }
+        }
         ShowScrambleWord(currentWord);
     }
 

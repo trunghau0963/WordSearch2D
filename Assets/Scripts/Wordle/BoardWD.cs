@@ -95,7 +95,10 @@ public class BoardWD : MonoBehaviour
 
     private void SetRandomWord()
     {
-        word = solutions[Random.Range(0, solutions.Length)];
+        do
+        {
+            word = solutions[Random.Range(0, solutions.Length)];
+        } while (word.Length != 5);
         string meaning = dictionary.GetValue(word);
         word = word.ToLower().Trim();
         ExplanationPrefab.GetComponent<ExplanationWord>().SetText(word, meaning);
