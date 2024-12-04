@@ -44,9 +44,9 @@ public class Dot : MonoBehaviour
         isRowBomb = false;
         isColorBomb = false;
         isAdjacentBomb = false;
-        hintManager = FindObjectOfType<HintManager>();
-        board = FindObjectOfType<Board>();
-        findMatches = FindObjectOfType<FindingMatches>();
+        hintManager = FindAnyObjectByType<HintManager>();
+        board = FindAnyObjectByType<Board>();
+        findMatches = FindAnyObjectByType<FindingMatches>();
         MakeCharacterAppear();
         // targetX = (int)transform.position.x;
         // targetY = (int)transform.position.y;

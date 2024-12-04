@@ -14,7 +14,11 @@ public class CategoryButton : MonoBehaviour
     // [SerializeField] private GameObject panel;
     ReviewNavigation navigation;
 
+    Category_PlayerPrefs category;
+
     SoundManagement audioManager;
+
+
 
     private void Awake()
     {
@@ -23,12 +27,13 @@ public class CategoryButton : MonoBehaviour
 
 
 
-    public void Init(string categoryName, float progress, string progressText)
+    public void Init(string categoryName, float progress, string progressText, Category_PlayerPrefs category)
     {
         text.text = categoryName;
         progressBarFilling.fillAmount = progress;
         textProgress.text = progressText;
         gameObject.name = categoryName;
+        this.category = category;
     }
 
     void Start()
@@ -41,8 +46,12 @@ public class CategoryButton : MonoBehaviour
     private void OnButtonClick()
     {
         // audioManager.PlaySFX(audioManager.sfxClipsList[0]);
-        gameData.newCategoryName = gameObject.name;
+        // Debug.Log("CategoryButton: " + gameObject.name);
+        // gameData.newCategoryName = gameObject.name;
+        Debug.Log("category selected: " + category.GetCategoryName());
+        gameData.selectedCategory = category;
         // gameData.selectedCategoryName = gameData.newCategoryName;
+        Debug.Log("Moving...");
         navigation.GoToSection();
     }
 }

@@ -40,6 +40,7 @@ public class Authentication : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Authentication");
         InitializeFirebase();
     }
     void InitializeFirebase()
@@ -52,6 +53,9 @@ public class Authentication : MonoBehaviour
 
     IEnumerator AuthStateChanged(object sender, System.EventArgs eventArgs)
     {
+        Debug.Log("AuthStateChanged");
+        Debug.Log("currentUser " + auth.CurrentUser);
+        Debug.Log("User " + User);
         if (auth.CurrentUser != User)
         {
             bool signedIn = User != auth.CurrentUser && auth.CurrentUser != null;
@@ -59,11 +63,16 @@ public class Authentication : MonoBehaviour
             {
                 isLogin = false;
                 Debug.Log("Signed out " + User.UserId);
+                anonymousDataUI.SetActive(true);
+                anonymousScoreboardUI.SetActive(true);
+                userDataUI.SetActive(false);
+                scoreboardUI.SetActive(false);
             }
             User = auth.CurrentUser;
             if (signedIn)
             {
                 isLogin = true;
+                Debug.Log("Signed in " + User.UserId);
                 StartCoroutine(LoadUserData());
                 // StartCoroutine(LoadScoreboardData());
                 yield return new WaitForSeconds(2);
@@ -76,6 +85,14 @@ public class Authentication : MonoBehaviour
                 Debug.Log("Signed in " + User.UserId);
             }
         }
+        // if (User == null)
+        // {
+        //     Debug.Log("User is null");
+        //     anonymousDataUI.SetActive(true);
+        //     anonymousScoreboardUI.SetActive(true);
+        //     userDataUI.SetActive(false);
+        //     scoreboardUI.SetActive(false);
+        // }
     }
 
     // Handle removing subscription and reference to the Auth instance.

@@ -17,6 +17,8 @@ public class LevelButton : MonoBehaviour
     public GameData gameData;
     private string gameSceneName = "WordSearchGameScene";
 
+    Level_PlayerPrefs level;
+
     // SoundManagement audioManager;
 
     // private void Awake()
@@ -25,7 +27,7 @@ public class LevelButton : MonoBehaviour
     //     // unlock.gameObject.SetActive(true);
     //     // isLock.gameObject.SetActive(false);
     // }
-    public void Init(string levelName, bool isLocked, bool isEvenLevel, bool isEnd, bool isCompleted)
+    public void Init(string levelName, bool isLocked, bool isEvenLevel, bool isEnd, bool isCompleted, Level_PlayerPrefs level)
     {
 
         if (isEvenLevel)
@@ -70,6 +72,7 @@ public class LevelButton : MonoBehaviour
         button.interactable = !isLocked;
         Name.text = levelName;
         gameObject.name = levelName;
+        this.level = level;
     }
 
     void Start()
@@ -80,7 +83,8 @@ public class LevelButton : MonoBehaviour
     private void OnButtonClick()
     {
         // audioManager.PlaySFX(audioManager.sfxClipsList[2]);
-        gameData.selectedLevelName = gameObject.name;
+        gameData.selectedLevel = level;
+        // gameData.selectedLevelName = gameObject.name;
         SceneManager.LoadScene(gameSceneName);
     }
 

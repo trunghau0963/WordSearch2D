@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SectionInit : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameDataSave data;
 
+    Category_PlayerPrefs category;
     public GameData currentData;
 
     public GameObject sectionButtonPrefab;
@@ -20,17 +21,29 @@ public class SectionInit : MonoBehaviour
 
     int finishedBoardCount = 0;
 
-    SavingFile savingFile;
-    void Awake()
+
+    public void SetSelectedCategory(Category_PlayerPrefs category)
     {
-        savingFile = FindAnyObjectByType<SavingFile>();
-        data = savingFile.LoadData();
-        // Debug.Log("SectionInit: " + data.DataSet.Count);
-        // InitializeSectionList();
+        this.category = category;
     }
+
+    public Category_PlayerPrefs GetSelectedCategory()
+    {
+        return category;
+    }
+
+
 
     void OnEnable()
     {
+        if (currentData.selectedCategory != null)
+        {
+            category = currentData.selectedCategory;
+        }
+        else
+        {
+            category = new Category_PlayerPrefs();
+        }
         InitializeSectionList();
     }
 
@@ -46,45 +59,38 @@ public class SectionInit : MonoBehaviour
 
     public void InitializeSectionList()
     {
-        if (data.DataSet != null)
+        Debug.Log("SectionInit: " + category.GetCategoryName());
+        if (category != null)
         {
-            foreach (Category category in data.DataSet)
+            foreach (Section_PlayerPrefs section in category.GetSections())
             {
-                bool des = currentData.selectedCategoryName == currentData.newCategoryName || currentData.newCategoryName == "";
-                if ((des && category.CategoryName == currentData.selectedCategoryName) || (category.CategoryName == currentData.newCategoryName))
+                totalLevelCount = 0;
+                finishedLevelCount = 0;
+                foreach (Level_PlayerPrefs level in section.GetLevels())
                 {
-                    foreach (Section section in category.Sections)
+                    totalLevelCount++;
+                    if (level.GetIsLock() == false)
                     {
-                        totalLevelCount = 0;
-                        finishedLevelCount = 0;
-                        foreach (Level level in section.Levels)
-                        {
-                            totalLevelCount++;
-                            if (level.isLock == false)
-                            {
-                                finishedLevelCount++;
-                            }
-
-                            foreach (BoardList board in level.Boards)
-                            {
-                                totalBoardCount++;
-                                if (board.isCompleted == true)
-                                {
-                                    finishedBoardCount++;
-                                }
-                            }
-
-                        }
-                        string textProgress = (((float)finishedLevelCount / totalLevelCount) * 100).ToString() + " %";
-                        // Debug.Log("Section Name: " + section.SectionName + " " + (float)finishedLevelCount / totalLevelCount);
-                        Button sectionButton = Instantiate(sectionButtonPrefab, transform).GetComponent<Button>();
-                        sectionButton.GetComponent<SectionButton>().Init(section.SectionName, (float)finishedLevelCount / totalLevelCount, section.isLock, textProgress);
-                        sectionButton.interactable = !section.isLock;
-                        // Debug.Log(section.SectionName + " " + (float)finishedLevelCount / totalLevelCount);
-
+                        finishedLevelCount++;
                     }
-                    break;
+
+                    foreach (BoardData board in level.GetBoardList())
+                    {
+                        totalBoardCount++;
+                        if (board.GetIsCompleted() == true)
+                        {
+                            finishedBoardCount++;
+                        }
+                    }
+
                 }
+                string textProgress = (((float)finishedLevelCount / totalLevelCount) * 100).ToString() + " %";
+                // Debug.Log("Section Name: " + section.SectionName + " " + (float)finishedLevelCount / totalLevelCount);
+                Button sectionButton = Instantiate(sectionButtonPrefab, transform).GetComponent<Button>();
+                sectionButton.GetComponent<SectionButton>().Init(section.GetSectionName(), (float)finishedLevelCount / totalLevelCount, section.GetIsLock(), textProgress, section);
+                sectionButton.interactable = !section.GetIsLock();
+                // Debug.Log(section.SectionName + " " + (float)finishedLevelCount / totalLevelCount);
+
             }
         }
     }

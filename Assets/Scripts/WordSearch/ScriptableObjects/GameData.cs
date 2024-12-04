@@ -6,14 +6,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameData : ScriptableObject
 {
-    public string selectedCategoryName;
-    public string selectedSectionName;
-
-    public string newCategoryName;
-    public string newSectionName;
-    public string selectedLevelName;
-
-    public string selectedBoardName;
     public BoardData selectedBoardData;
-
+    public Category_PlayerPrefs selectedCategory;
+    public Section_PlayerPrefs selectedSection;
+    public Level_PlayerPrefs selectedLevel;
 }

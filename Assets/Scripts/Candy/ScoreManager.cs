@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        board = FindObjectOfType<Board>();
+        board = FindFirstObjectByType<Board>();
     }
 
     // Update is called once per frame

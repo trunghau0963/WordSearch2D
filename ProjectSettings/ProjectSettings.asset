@@ -144,9 +144,9 @@ PlayerSettings:
   tvOSBundleVersion: 1.0
   bundleVersion: 1.0.2
   preloadedAssets:
-  - {fileID: -4389984894547746160, guid: aa37250b2178e5a408b6d0c52bb5317d, type: 2}
-  - {fileID: 11400000, guid: b489386dcf8ccb34ab409478701d5748, type: 2}
   - {fileID: 11400000, guid: c6b86cb318295524e8ba03bd36163937, type: 2}
+  - {fileID: 11400000, guid: b489386dcf8ccb34ab409478701d5748, type: 2}
+  - {fileID: -4389984894547746160, guid: aa37250b2178e5a408b6d0c52bb5317d, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -273,8 +273,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: '{dedicated}: .android/debug.keystore'
+  AndroidKeyaliasName: debug
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0
@@ -283,7 +283,7 @@ PlayerSettings:
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -980,7 +980,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 3
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 320156d9-f2a1-4ef0-bce2-cd9afa9330dd
   framebufferDepthMemorylessMode: 0
@@ -992,6 +992,6 @@ PlayerSettings:
   hmiLoadingImage: {fileID: 0}
   platformRequiresReadableAssets: 0
   virtualTexturingSupportEnabled: 0
-  insecureHttpOption: 2
+  insecureHttpOption: 0
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []

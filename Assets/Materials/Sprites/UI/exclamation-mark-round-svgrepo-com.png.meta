@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      exclamation-mark-round-svgrepo-com_0: 1777136525047311132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

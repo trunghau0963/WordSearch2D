@@ -15,7 +15,6 @@ public class ReviewNavigation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SwitchToLevel();
         Console.WriteLine("size of panels: " + panels.Length);
         for (int i = 1; i < panels.Length; i++)
         {
@@ -23,20 +22,6 @@ public class ReviewNavigation : MonoBehaviour
         }
         panels[0].SetActive(true);
         EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
-    }
-    public void SwitchToCategory()
-    {
-        gameData.newCategoryName = "";
-    }
-
-    public void SwitchToSection()
-    {
-        gameData.newSectionName = "";
-    }
-
-    public void SwitchToLevel()
-    {
-        gameData.selectedLevelName = "";
     }
 
     public void ShowPanel(GameObject activePanel)

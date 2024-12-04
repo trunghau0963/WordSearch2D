@@ -60,7 +60,6 @@ public class IntrolControl : MonoBehaviour
     //     mainMenu.SetActive(true);
     //     optionMenu.SetActive(false);
     // }
-
     public void Quit()
     {
         Application.Quit();
@@ -68,7 +67,8 @@ public class IntrolControl : MonoBehaviour
 
     public void LogIn()
     {
-        SceneManager.LoadScene(gameSceneName);
+        LevelManager.Instance.LoadScene("Authenticate", "CrossWipe");
+        MusicManager.Instance.PlayMusic("MainMenu");
     }
 
     public void UpdateMusicVolume(float volume)

@@ -49,7 +49,6 @@ public class WordChecker : MonoBehaviour
         _assignedPoints = 0;
         _completedWords = 0;
         gameDataSelector = FindAnyObjectByType<GameDataSelector>();
-        dataSave = gameDataSelector.data;
     }
 
     void Update()
@@ -202,81 +201,60 @@ public class WordChecker : MonoBehaviour
         bool loadNextBoard = false;
         if (currentGameData.selectedBoardData.SearchWords.Count == _completedWords)
         {
-            Section section = gameDataSelector.savingFile.LoadSection(currentGameData.selectedCategoryName, currentGameData.selectedSectionName);
-            Level level = gameDataSelector.savingFile.LoadLevel(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentGameData.selectedLevelName);
+            Section_PlayerPrefs section = currentGameData.selectedSection;
+            Level_PlayerPrefs level = currentGameData.selectedLevel;
+
+            int totalBoardCount = level.boardList.Count;
 
             if (level == null)
             {
-                // Debug.LogError("Level is null");
                 return;
             }
-            // Debug.Log("Level is not null" + level.Name);
             int currentBoardIndex = 0;
-            for (int i = 0; i < level.Boards.Count; i++)
+            for (int i = 0; i < totalBoardCount; i++)
             {
-                // BoardList board = level.Boards[i];
-                if (currentGameData.selectedBoardName == level.Boards[i].Name)
+                BoardData board = level.boardList[i];
+                if (currentGameData.selectedBoardData == board)
                 {
-                    Debug.Log("Selected Board : " + currentGameData.selectedBoardName + "=" + level.Boards[i].Name);
                     currentBoardIndex = i;
                     int nextBoardIndex = i + 1;
-                    int score = (int)(level.Boards[currentBoardIndex].boardData.timeInSeconds * 10);
-                    level.Boards[currentBoardIndex].isCompleted = true;
-                    // level.Boards[currentBoardIndex].isLock = false;
-                    level.score += score;
-                    // currentBoard.isCompleted = true;
-                    // currentBoard.Score = score;
-                    gameDataSelector.savingFile.SaveBoardData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentGameData.selectedLevelName, level.Boards[currentBoardIndex]);
-                    if (nextBoardIndex < level.Boards.Count)
+                    int score = (int)(level.boardList[currentBoardIndex].timeInSeconds * 10);
+                    level.boardList[currentBoardIndex].isCompleted = true;
+                    int currentScore = level.GetScore();
+                    level.SetScore(currentScore + score);
+                    if (nextBoardIndex < totalBoardCount)
                     {
-                        // Debug.Log("Current board index: " + currentBoardIndex);
-                        // Debug.Log("Current board name: " + level.Boards[currentBoardIndex].Name);
-                        // Debug.Log("Next board index: " + nextBoardIndex);
-                        // Debug.Log("Next board name: " + level.Boards[nextBoardIndex].Name);
-                        currentGameData.selectedBoardName = level.Boards[nextBoardIndex].Name;
-                        currentGameData.selectedBoardData = level.Boards[nextBoardIndex].boardData;
-                        // score = (int)(level.Boards[nextBoardIndex].boardData.timeInSeconds * 10);
-                        // level.Boards[nextBoardIndex].isLock = false;
-                        level.Boards[nextBoardIndex].index = nextBoardIndex;
-                        // nextBoard.isLock = false;
-                        // nextBoard.index = nextBoardIndex;
-                        gameDataSelector.savingFile.SaveBoardData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentGameData.selectedLevelName, level.Boards[nextBoardIndex]);
+                        currentGameData.selectedBoardData = level.boardList[nextBoardIndex];
+                        level.boardList[nextBoardIndex].index = nextBoardIndex;
                         loadNextBoard = true;
                     }
                     else
                     {
                         GameEvents.ShowPopupMethod(true);
                         GameEvents.SaveWordDictionaryMethod();
-                        // SceneManager.LoadScene("MainMenu");
                     }
                     break;
                 }
             }
 
-            int currentLevelSize = section.Levels.Find(l => l.Name == currentGameData.selectedLevelName).Boards.Count;
-
-            // Debug.Log("Current board index: " + currentBoardIndex);
-            // Debug.Log("Current level size: " + currentLevelSize);
-            if ((currentBoardIndex + 1) >= currentLevelSize)
+            if ((currentBoardIndex + 1) >= totalBoardCount)
             {
                 int currentLevelIndex = 0;
-                for (int i = 0; i < section.Levels.Count; i++)
+                for (int i = 0; i < section.GetLevels().Count; i++)
                 {
-                    if (section.Levels[i].Name == currentGameData.selectedLevelName)
+                    if (section.GetLevel(i).Name == currentGameData.selectedLevel.Name)
                     {
                         currentLevelIndex = i;
                         break;
                     }
                 }
 
-                if ((currentLevelIndex + 1) < section.Levels.Count)
+                if ((currentLevelIndex + 1) < section.GetLevels().Count)
                 {
-                    Level currentLevel = section.Levels[currentLevelIndex];
-                    currentLevel.isCompleted = true;
-                    gameDataSelector.savingFile.SaveLevelData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, currentLevel);
-                    Level nextLevel = section.Levels[currentLevelIndex + 1];
-                    nextLevel.isLock = false;
-                    gameDataSelector.savingFile.SaveLevelData(currentGameData.selectedCategoryName, currentGameData.selectedSectionName, nextLevel);
+                    Level_PlayerPrefs currentLevel = section.GetLevel(currentLevelIndex);
+                    currentLevel.SetIsCompleted(true);
+                    Level_PlayerPrefs nextLevel = section.GetLevel(currentLevelIndex + 1);
+                    nextLevel.SetIsLock(false);
                     loadNextBoard = true;
                 }
                 else
@@ -284,7 +262,6 @@ public class WordChecker : MonoBehaviour
                     Debug.Log("Section complete and Show popup event"); 
                     GameEvents.ShowPopupMethod(true);
                     GameEvents.SaveWordDictionaryMethod();
-                    // SceneManager.LoadScene("MainMenu");
                 }
             }
             else
@@ -296,7 +273,6 @@ public class WordChecker : MonoBehaviour
             }
             if (loadNextBoard)
             {
-                // GameEvents.BoardCompleteMethod();
                 GameEvents.SaveWordDictionaryMethod();
                 GameEvents.OnUnlockNextBoardMethod();
             }

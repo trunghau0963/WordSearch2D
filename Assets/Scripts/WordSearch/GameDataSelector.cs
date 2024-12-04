@@ -9,71 +9,57 @@ public class GameDataSelector : MonoBehaviour
 {
     public GameData currentGameData;
 
-    public GameDataSave data;
+    // public GameDataSave data;
 
-    public SavingFile savingFile;
+    // public SavingFile savingFile;
 
 
 
     void Awake()
     {
-        savingFile = FindAnyObjectByType<SavingFile>();
-        data = savingFile.LoadData();
+        // savingFile = FindAnyObjectByType<SavingFile>();
+        // data = savingFile.LoadData();
         SelectSequentalBoardData();
     }
 
     private void SelectSequentalBoardData()
     {
-        if (data.DataSet != null)
+
+        Level_PlayerPrefs level = currentGameData.selectedLevel;
+        int totalBoardCount = level.boardList.Count;
+
+        for (int i = 0; i < level.boardList.Count; i++)
         {
-            foreach (var category in data.DataSet)
+            BoardData board = level.boardList[i];
+            if (!currentGameData.selectedLevel.GetIsCompleted())
             {
-                if (category.CategoryName == currentGameData.selectedCategoryName)
+                // Skip the board if it is completed
+                if (board.isCompleted)
                 {
-                    foreach (var section in category.Sections)
-                    {
-                        if (section.SectionName == currentGameData.selectedSectionName)
-                        {
-                            foreach (var level in section.Levels)
-                            {
-                                if (level.Name == currentGameData.selectedLevelName)
-                                {
-                                    foreach (var board in level.Boards)
-                                    {
-                                        if (!level.isCompleted)
-                                        {
-                                            // Skip the board if it is completed
-                                            if (board.isCompleted)
-                                            {
-                                                continue;
-                                            }
-                                            // if (!board.isLock)
-                                            // {
-                                            if (board.index < level.Boards.Count)
-                                            {
-                                                currentGameData.selectedBoardName = board.Name;
-                                                currentGameData.selectedBoardData = board.boardData;
-                                                return;
-                                            }
-                                            // }
-                                        }
-                                        else {
-                                            // if the level is completed, select the next board
-                                            if (board.index < level.Boards.Count)
-                                            {
-                                                currentGameData.selectedBoardName = board.Name;
-                                                currentGameData.selectedBoardData = board.boardData;
-                                                return;
-                                            }
-                                        }
-                                    }
-                                    return;
-                                }
-                            }
-                        }
-                    }
+                    continue;
+                }
+                // if (!board.isLock)
+                // {
+                if (i < totalBoardCount)
+                {
+                    // currentGameData.selectedBoardName = board.Name;
+                    currentGameData.selectedBoardData = board;
+                    return;
+                }
+                // }
+            }
+            else
+            {
+                // if the level is completed, select the next board
+                if (i < totalBoardCount)
+                {
+                    // currentGameData.selectedBoardName = board.Name;
+                    currentGameData.selectedBoardData = board;
+                    return;
                 }
             }
         }
+        return;
     }
 }
+

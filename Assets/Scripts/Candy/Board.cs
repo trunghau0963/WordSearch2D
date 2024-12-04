@@ -54,10 +54,10 @@ public class Board : MonoBehaviour
 
     void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
-        soundManager = FindObjectOfType<SoundManager>();
+        scoreManager = FindFirstObjectByType<ScoreManager>();
+        soundManager = FindFirstObjectByType<SoundManager>();
         breakableTiles = new BackgroundTile[width, height];
-        findMatches = FindObjectOfType<FindingMatches>();
+        findMatches = FindAnyObjectByType<FindingMatches>();
         blankSpaces = new bool[width, height];
         allDots = new GameObject[width, height];
         CreateBoard();
@@ -83,11 +83,6 @@ public class Board : MonoBehaviour
             string word = solutions[Random.Range(0, solutions.Length)];
             word = word.ToLower().Trim();
             wordList.Add(word);
-            // foreach (string wordAdded in wordList)
-            // {
-            //     Debug.Log("Word: " + wordAdded);
-            // }
-
         }
 
     }
@@ -489,11 +484,6 @@ public class Board : MonoBehaviour
                     breakableTiles[column, row] = null;
                 }
             }
-            // findMatches.currentMatches.Remove(allDots[column, row]);
-            // if (soundManager != null)
-            // {
-            //     soundManager.PlayRandomDestroyNoise();
-            // }
             GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
             Destroy(allDots[column, row]);

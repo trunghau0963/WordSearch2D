@@ -26,6 +26,8 @@ public class BoardDataDrawer : Editor
         // DrawDefaultInspector();
         serializedObject.Update();
 
+        GameDataInstance.Name = EditorGUILayout.TextField("Name", GameDataInstance.Name);
+        GameDataInstance.isCompleted = EditorGUILayout.Toggle("Is Completed", GameDataInstance.isCompleted);
         GameDataInstance.timeInSeconds = EditorGUILayout.FloatField("Time in Seconds", GameDataInstance.timeInSeconds);
 
         DrawColumnsRowsInputFields();

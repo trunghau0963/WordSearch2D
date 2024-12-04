@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bbb828738398e40bc467ded7ac03af, type: 3}
   m_Name: CurrentGameData
   m_EditorClassIdentifier: 
-  selectedCategoryName: Life Sciences
-  selectedSectionName: Fit for life
-  newCategoryName: Life Sciences
-  newSectionName: Fit for life
-  selectedLevelName: 
-  selectedBoardName: Board 1
   selectedBoardData: {fileID: 11400000, guid: 78e47b8f56343f24a8c9adb75ad304e4, type: 2}
+  selectedCategory: {fileID: 11400000, guid: 2114e4393b3027949b1415f9a16f90ca, type: 2}
+  selectedSection: {fileID: 11400000, guid: 34894f15c92a24344bbcd1fa3d42d2f6, type: 2}
+  selectedLevel: {fileID: 0}

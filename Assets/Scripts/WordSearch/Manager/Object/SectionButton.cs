@@ -15,6 +15,8 @@ public class SectionButton : MonoBehaviour
 
     public GameData gameData;
 
+    Section_PlayerPrefs section;
+
     SoundManagement audioManager;
 
     private void Awake()
@@ -22,7 +24,7 @@ public class SectionButton : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagement>();
     }
 
-    public void Init(string sectionName, float progress, bool isLocked, string progressTxt)
+    public void Init(string sectionName, float progress, bool isLocked, string progressTxt, Section_PlayerPrefs section)
     {
         gameObject.name = sectionName;
         title.text = sectionName;
@@ -30,6 +32,8 @@ public class SectionButton : MonoBehaviour
         progressBarFilling.fillAmount = progress;
         progressText.gameObject.SetActive(!isLocked);
         progressText.text = progressTxt;
+        this.section = section;
+
     }
 
     void Start()
@@ -43,17 +47,19 @@ public class SectionButton : MonoBehaviour
     private void OnButtonClick()
     {
         //  audioManager.PlaySFX(audioManager.sfxClipsList[0]);
-        gameData.newSectionName = gameObject.name;
-        if (gameData.newCategoryName != "")
-        {
+        // gameData.newSectionName = gameObject.name;
+        gameData.selectedSection = section;
+        // if (gameData.newCategoryName != "")
+        // {
 
-            gameData.selectedSectionName = gameData.newSectionName;
-            gameData.selectedCategoryName = gameData.newCategoryName;
-        }
-        else
-        {
-            gameData.selectedSectionName = gameData.newSectionName;
-        }
+        //     gameData.selectedSectionName = gameData.newSectionName;
+        //     gameData.selectedCategoryName = gameData.newCategoryName;
+        // }
+        // else
+        // {
+        //     gameData.selectedSectionName = gameData.newSectionName;
+        // }
+
         navigation.GoToLevel();
     }
 

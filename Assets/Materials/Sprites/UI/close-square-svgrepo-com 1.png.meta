@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      close-square-svgrepo-com 1_0: 7717159485541399118
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

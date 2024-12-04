@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rewind-fast-forward-svgrepo-com_0: -2357682409810755826
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

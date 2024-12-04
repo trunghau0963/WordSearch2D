@@ -56,18 +56,6 @@ public class BoardWD : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-
-    private void update()
-    {
-        // Row currentRow = rows[rowIndex];
-        // if(columnIndex >= currentRow.tiles.Length)
-        // {
-        //     CheckWord();
-        // }
-    }
-
     private void LoadData()
     {
         TextAsset textFile = Resources.Load("official_wordle_common") as TextAsset;
@@ -152,13 +140,6 @@ public class BoardWD : MonoBehaviour
 
     private void SubmitRow(Row row)
     {
-        // Debug.Log("SubmitRow"); 
-        // if (!IsValidWord(row.word))
-        // {
-        //     invalidWordText.SetActive(true);
-        //     return;
-        // }
-
         string remaining = word;
 
         Debug.Log("Word: " + word);
@@ -168,17 +149,9 @@ public class BoardWD : MonoBehaviour
         {
             Tiles tile = row.tiles[i];
             string letter = tile.letter.ToLower();
-            // Debug.Log("Letter: " + letter + " " + letter.Length);
-            // Debug.Log("Word letter: " + word[i].ToString() + " and " + word[i].ToString().Length);
-            // Debug.Log("chheck correct" + letter == word[i].ToString());
             if (letter == word[i].ToString())
             {
-                // Debug.Log("Correct letter: " + letter);
-                // Correct state
                 tile.SetState(correctState);
-
-                // remaining = remaining.Remove(i, 1);
-                // remaining = remaining.Insert(i, " ");
             }
             else if (!word.Contains(letter))
             {
@@ -189,17 +162,12 @@ public class BoardWD : MonoBehaviour
         for (int i = 0; i < row.tiles.Length; i++)
         {
             Tiles tile = row.tiles[i];
-
-            // Debug.Log("Tile state: " + tile.state);   
-
             if (tile.state != correctState && tile.state != incorrectState)
             {
-                // Debug.Log("Wrong spot");
                 string letter = tile.letter.ToLower();
                 if (remaining.Contains(letter))
                 {
                     tile.SetState(wrongSpotState);
-
                     // int index = remaining.IndexOf(letter);
                     // remaining = remaining.Remove(index, 1);
                     // remaining = remaining.Insert(index, " ");

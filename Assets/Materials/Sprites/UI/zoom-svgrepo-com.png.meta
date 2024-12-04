@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      zoom-svgrepo-com_0: -4798345610847161679
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
