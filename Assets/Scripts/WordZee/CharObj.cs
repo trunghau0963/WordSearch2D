@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharObj : MonoBehaviour
 {
     public char charName;
-    public Text text;
+    public TMP_Text text;
     public Image image;
     public RectTransform reactTransform;
     public int index;

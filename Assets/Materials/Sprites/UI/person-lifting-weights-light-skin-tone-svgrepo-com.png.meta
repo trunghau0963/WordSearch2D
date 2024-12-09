@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      person-lifting-weights-light-skin-tone-svgrepo-com_0: -933392298498861424
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

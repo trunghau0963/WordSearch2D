@@ -40,6 +40,7 @@ public class AuthenticationChecker : MonoBehaviour
         Debug.Log("AuthStateChanged");
         Debug.Log("currentUser " + auth.CurrentUser);
         Debug.Log("User " + User);
+        // Debug.Log("User id" + User.UserId);
         if (auth.CurrentUser != User)
         {
             bool signedIn = User != auth.CurrentUser && auth.CurrentUser != null;
@@ -60,12 +61,22 @@ public class AuthenticationChecker : MonoBehaviour
                 }
             }
         }
+        if(User != null)
+        {
+            yield return new WaitForSeconds(1);
+            LevelManager.Instance.LoadScene("MainMenu", "CrossWipe");
+        }
+        else {
+            yield return new WaitForSeconds(1);
+            LevelManager.Instance.LoadScene("IntroScene", "CrossWipe");
+        }
+        
     }
-    void OnDestroy()
-    {
-        auth.StateChanged -= (sender, args) => StartCoroutine(AuthStateChanged(sender, args));
-        auth = null;
-    }
+    // void OnDestroy()
+    // {
+    //     auth.StateChanged -= (sender, args) => StartCoroutine(AuthStateChanged(sender, args));
+    //     auth = null;
+    // }
 
     public void Reauthenticate(string password)
     {

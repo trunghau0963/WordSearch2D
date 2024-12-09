@@ -1227,4 +1227,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a101ac412f7ba241a7e23e849ea42c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxClipIndex: 2
+  sfxClipIndex: 1

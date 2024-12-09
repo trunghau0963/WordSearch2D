@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      quiz-svgrepo-com_0: 8858805278815624155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

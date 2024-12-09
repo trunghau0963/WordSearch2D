@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Materials/FlapjackMaker/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: 60285917e38f5bb40ac7e64c00f0cd94
@@ -24,14 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/WordZeeGameScene.unity
     guid: f40618379c5148343857edc137039457
   - enabled: 1
-    path: Assets/Scenes/WordZeeGameScene2.unity
-    guid: f171b51394927274eb000df3f96012d7
-  - enabled: 1
     path: Assets/Scenes/WordleGameScene.unity
     guid: 75e31fbcd4beafc4ab8accd91d4eb413
-  - enabled: 1
-    path: Assets/Scenes/TerisGameScene.unity
-    guid: b6a603a4ca8bdc0458484a74b620649d
   - enabled: 1
     path: Assets/Scenes/CandyGameScene.unity
     guid: 27ee4561c4e211e4cb0c7f7603f32338

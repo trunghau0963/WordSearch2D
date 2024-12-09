@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
+
+// using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SearchingWord : MonoBehaviour
 {
-    public Text displayText;
+    public TMP_Text displayText;
     public Image crossLine;
     private string _word;
     void Start()

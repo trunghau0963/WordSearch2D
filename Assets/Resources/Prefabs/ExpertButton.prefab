@@ -298,7 +298,6 @@ GameObject:
   - component: {fileID: 624470897746914645}
   - component: {fileID: 1206526503175589444}
   - component: {fileID: 323951757491523005}
-  - component: {fileID: 2629649736142803380}
   - component: {fileID: 7501740788582287884}
   m_Layer: 5
   m_Name: ExpertButton
@@ -424,23 +423,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2629649736142803380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6061540862863032433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78a43448197683948a64eef5573d3d38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLock: {fileID: 1770901796940222795}
-  title: {fileID: 481261200308011042}
-  progressText: {fileID: 0}
-  progressBarFilling: {fileID: 3325023461828292163}
-  gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
 --- !u!114 &7501740788582287884
 MonoBehaviour:
   m_ObjectHideFlags: 0

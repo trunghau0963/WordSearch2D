@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      achievement-svgrepo-com_0: 5543530199284985367
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

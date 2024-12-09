@@ -9,7 +9,7 @@ public class PhoneAuth : MonoBehaviour
     public TextMeshProUGUI logTxt;
     public GameObject AllOptions;//all options
     public GameObject SuccessUi;
-    uint phoneAuthTimeoutMs = 3 * 60000;//minutes to milisec
+    // uint phoneAuthTimeoutMs = 3 * 60000;//minutes to milisec
     FirebaseAuth auth;
     PhoneAuthProvider provider;
     private void Start()

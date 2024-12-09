@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class CategoryButton : MonoBehaviour
     public Text text;
     public Image progressBarFilling;
     public GameData gameData;
-    public Text textProgress;
+    public TMP_Text textProgress;
     // [SerializeField] private GameObject panel;
     ReviewNavigation navigation;
 

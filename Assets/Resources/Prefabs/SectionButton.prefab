@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a7da6cae76bf124e8dc154efe54d790, type: 2}
+  m_sharedMaterial: {fileID: -3479966147405583602, guid: 8a7da6cae76bf124e8dc154efe54d790, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 323951757491523005}
   - component: {fileID: 2002753006650048286}
   - component: {fileID: 2629649736142803380}
+  - component: {fileID: 290590372559447022}
   m_Layer: 5
   m_Name: SectionButton
   m_TagString: Untagged
@@ -381,6 +382,19 @@ MonoBehaviour:
   progressText: {fileID: 9177531303379093756}
   progressBarFilling: {fileID: 3325023461828292163}
   gameData: {fileID: 11400000, guid: 5bcedea2420b2344194f30c64702eebb, type: 2}
+--- !u!114 &290590372559447022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061540862863032433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a101ac412f7ba241a7e23e849ea42c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxClipIndex: 1
 --- !u!1 &6741477660417146437
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,8 +538,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e8648ada903f2d41afcb5f3e9c3c269, type: 2}
+  m_sharedMaterial: {fileID: -6290746224029084583, guid: 2e8648ada903f2d41afcb5f3e9c3c269, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
