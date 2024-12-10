@@ -679,7 +679,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 105074559}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1318702711}
+        m_TargetAssemblyTypeName: FbLogin, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &105074559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,7 +1342,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 177879838}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1318702712}
+        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+        m_MethodName: GoogleSignInClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &177879838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5165,8 +5189,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sign In Your Account
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 31af0e01dff9d2946a1fa533826fdf59, type: 2}
-  m_sharedMaterial: {fileID: -7832707967872553317, guid: 31af0e01dff9d2946a1fa533826fdf59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6838,6 +6862,8 @@ GameObject:
   - component: {fileID: 1318702709}
   - component: {fileID: 1318702708}
   - component: {fileID: 1318702710}
+  - component: {fileID: 1318702711}
+  - component: {fileID: 1318702712}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6967,6 +6993,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e17f1669c51e8c44bd6215b3835f5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1318702711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318702704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569a452a7a95c4cba50dce604e7f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1318702712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318702704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0530e04dbb9a44ea92aceb78951854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoogleAPI: 1000133012177-f0h9ds19spohj02h621duin7jcc62rtl.apps.googleusercontent.com
 --- !u!1 &1331525739
 GameObject:
   m_ObjectHideFlags: 0
@@ -7726,8 +7777,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sign Up Your Account
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 31af0e01dff9d2946a1fa533826fdf59, type: 2}
-  m_sharedMaterial: {fileID: -7832707967872553317, guid: 31af0e01dff9d2946a1fa533826fdf59, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9263,7 +9314,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1908724202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1318702712}
+        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+        m_MethodName: GoogleSignInClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1908724202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9401,7 +9464,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1936537112}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1318702711}
+        m_TargetAssemblyTypeName: FbLogin, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1936537112
 MonoBehaviour:
   m_ObjectHideFlags: 0

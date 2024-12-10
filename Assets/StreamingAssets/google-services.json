@@ -3,7 +3,7 @@
     "project_number": "1000133012177",
     "firebase_url": "https://wordsearchevoluation-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "wordsearchevoluation",
-    "storage_bucket": "wordsearchevoluation.appspot.com"
+    "storage_bucket": "wordsearchevoluation.firebasestorage.app"
   },
   "client": [
     {
@@ -20,6 +20,14 @@
           "android_info": {
             "package_name": "com.Selab.WordSearchRevoluation",
             "certificate_hash": "9174be3e1ec15cf9675ef88c8b668c24f2f8b746"
+          }
+        },
+        {
+          "client_id": "1000133012177-bdi1rjbuuir58r239lio6dnd9of6ig3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Selab.WordSearchRevoluation",
+            "certificate_hash": "528dcddc1bdf80e8972d1d6cad11a0d9cbfd6c8b"
           }
         },
         {

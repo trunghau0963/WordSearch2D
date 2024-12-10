@@ -85,14 +85,20 @@ public class Authentication : MonoBehaviour
                 Debug.Log("Signed in " + User.UserId);
             }
         }
-        // if (User == null)
-        // {
-        //     Debug.Log("User is null");
-        //     anonymousDataUI.SetActive(true);
-        //     anonymousScoreboardUI.SetActive(true);
-        //     userDataUI.SetActive(false);
-        //     scoreboardUI.SetActive(false);
-        // }
+
+        if( User != null)
+        {
+            userDataUI.SetActive(true);
+            scoreboardUI.SetActive(true);
+            anonymousDataUI.SetActive(false);
+            anonymousScoreboardUI.SetActive(false);            
+        }
+        else {
+            userDataUI.SetActive(false);
+            scoreboardUI.SetActive(false);
+            anonymousDataUI.SetActive(true);
+            anonymousScoreboardUI.SetActive(true);
+        }
     }
 
     // Handle removing subscription and reference to the Auth instance.
@@ -354,9 +360,9 @@ public class Authentication : MonoBehaviour
         else if (DBTask.Result.Value == null)
         {
             //No data exists yet
-            xpField.text = "0";
-            killsField.text = "0";
-            deathsField.text = "0";
+            // xpField.text = "0";
+            // killsField.text = "0";
+            // deathsField.text = "0";
         }
         else
         {
