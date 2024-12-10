@@ -1,0 +1,5 @@
+E:/Test/WordSearch2D/.utmp/RelWithDebInfo/u65h5u3i/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/Test/WordSearch2D/.utmp/RelWithDebInfo/u65h5u3i/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+E:/Test/WordSearch2D/.utmp/RelWithDebInfo/u65h5u3i/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+E:/Test/WordSearch2D/.utmp/RelWithDebInfo/u65h5u3i/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+E:/Test/WordSearch2D/.utmp/RelWithDebInfo/u65h5u3i/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
