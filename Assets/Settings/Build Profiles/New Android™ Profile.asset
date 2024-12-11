@@ -18,10 +18,11 @@ MonoBehaviour:
   m_PlatformId: b9b35072a6f44c2e863f17467ea3dc13
   m_PlatformBuildProfile:
     rid: 5002750549291958345
-  m_OverrideGlobalSceneList: 0
-  m_Scenes: []
-  m_ScriptingDefines:
-  - 
+  m_OverrideGlobalSceneList: 1
+  m_Scenes:
+  - m_enabled: 1
+    m_path: Assets/Scenes/LoadingScene.unity
+  m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:
     - line: '| PlayerSettings:'
@@ -168,13 +169,7 @@ MonoBehaviour:
     - line: '|   visionOSBundleVersion: 1.0'
     - line: '|   tvOSBundleVersion: 1.0'
     - line: '|   bundleVersion: 1.0.2'
-    - line: '|   preloadedAssets:'
-    - line: '|   - {fileID: 11400000, guid: c6b86cb318295524e8ba03bd36163937, type:
-        2}'
-    - line: '|   - {fileID: 11400000, guid: b489386dcf8ccb34ab409478701d5748, type:
-        2}'
-    - line: '|   - {fileID: -4389984894547746160, guid: aa37250b2178e5a408b6d0c52bb5317d,
-        type: 2}'
+    - line: '|   preloadedAssets: []'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   m_HolographicPauseOnTrackingLoss: 1'
@@ -290,7 +285,7 @@ MonoBehaviour:
     - line: '|   clonedFromGUID: f918f204a65eb664ba9e5b39d533ff8e'
     - line: '|   templatePackageId: com.unity.template.mobile2d@3.0.0'
     - line: '|   templateDefaultScene: Assets/Scenes/SampleScene.unity'
-    - line: '|   useCustomMainManifest: 0'
+    - line: '|   useCustomMainManifest: 1'
     - line: '|   useCustomLauncherManifest: 0'
     - line: '|   useCustomMainGradleTemplate: 1'
     - line: '|   useCustomLauncherGradleManifest: 0'

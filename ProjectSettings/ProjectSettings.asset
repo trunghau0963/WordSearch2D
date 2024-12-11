@@ -143,10 +143,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 1.0.2
-  preloadedAssets:
-  - {fileID: 11400000, guid: c6b86cb318295524e8ba03bd36163937, type: 2}
-  - {fileID: 11400000, guid: b489386dcf8ccb34ab409478701d5748, type: 2}
-  - {fileID: -4389984894547746160, guid: aa37250b2178e5a408b6d0c52bb5317d, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -978,7 +975,7 @@ PlayerSettings:
   hmiCpuConfiguration: 
   hmiLogStartupTiming: 0
   qnxGraphicConfPath: 
-  apiCompatibilityLevel: 3
+  apiCompatibilityLevel: 6
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
